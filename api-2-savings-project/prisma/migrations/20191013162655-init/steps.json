@@ -1,0 +1,502 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "stepType": "CreateModel",
+      "name": "User",
+      "embedded": false
+    },
+    {
+      "stepType": "CreateModel",
+      "name": "Company",
+      "embedded": false
+    },
+    {
+      "stepType": "CreateModel",
+      "name": "BusinessUnit",
+      "embedded": false
+    },
+    {
+      "stepType": "CreateModel",
+      "name": "Project",
+      "embedded": false
+    },
+    {
+      "stepType": "CreateModel",
+      "name": "ProjectProfile",
+      "embedded": false
+    },
+    {
+      "stepType": "CreateModel",
+      "name": "Spend",
+      "embedded": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "User",
+      "name": "id",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false,
+      "id": {
+        "strategy": "Auto",
+        "sequence": null
+      },
+      "default": {
+        "Expression": [
+          "cuid",
+          "String",
+          []
+        ]
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "User",
+      "name": "firstName",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "User",
+      "name": "lastName",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "User",
+      "name": "projects",
+      "type": {
+        "Relation": {
+          "to": "Project",
+          "to_fields": [],
+          "name": "ProjectToUser",
+          "on_delete": "None"
+        }
+      },
+      "arity": "list",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "User",
+      "name": "company",
+      "type": {
+        "Relation": {
+          "to": "Company",
+          "to_fields": [
+            "id"
+          ],
+          "name": "CompanyToUser",
+          "on_delete": "None"
+        }
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Company",
+      "name": "id",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false,
+      "id": {
+        "strategy": "Auto",
+        "sequence": null
+      },
+      "default": {
+        "Expression": [
+          "cuid",
+          "String",
+          []
+        ]
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Company",
+      "name": "name",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": true
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Company",
+      "name": "users",
+      "type": {
+        "Relation": {
+          "to": "User",
+          "to_fields": [],
+          "name": "CompanyToUser",
+          "on_delete": "None"
+        }
+      },
+      "arity": "list",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Company",
+      "name": "projects",
+      "type": {
+        "Relation": {
+          "to": "Project",
+          "to_fields": [],
+          "name": "CompanyToProject",
+          "on_delete": "None"
+        }
+      },
+      "arity": "list",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Company",
+      "name": "businessUnits",
+      "type": {
+        "Relation": {
+          "to": "BusinessUnit",
+          "to_fields": [],
+          "name": "BusinessUnitToCompany",
+          "on_delete": "None"
+        }
+      },
+      "arity": "list",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "BusinessUnit",
+      "name": "id",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false,
+      "id": {
+        "strategy": "Auto",
+        "sequence": null
+      },
+      "default": {
+        "Expression": [
+          "cuid",
+          "String",
+          []
+        ]
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "BusinessUnit",
+      "name": "name",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "BusinessUnit",
+      "name": "projectProfiles",
+      "type": {
+        "Relation": {
+          "to": "ProjectProfile",
+          "to_fields": [],
+          "name": "BusinessUnitToProjectProfile",
+          "on_delete": "None"
+        }
+      },
+      "arity": "list",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "BusinessUnit",
+      "name": "company",
+      "type": {
+        "Relation": {
+          "to": "Company",
+          "to_fields": [
+            "id"
+          ],
+          "name": "BusinessUnitToCompany",
+          "on_delete": "None"
+        }
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Project",
+      "name": "id",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false,
+      "id": {
+        "strategy": "Auto",
+        "sequence": null
+      },
+      "default": {
+        "Expression": [
+          "cuid",
+          "String",
+          []
+        ]
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Project",
+      "name": "name",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Project",
+      "name": "url",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": true
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Project",
+      "name": "projectProfiles",
+      "type": {
+        "Relation": {
+          "to": "ProjectProfile",
+          "to_fields": [],
+          "name": "ProjectToProjectProfile",
+          "on_delete": "None"
+        }
+      },
+      "arity": "list",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Project",
+      "name": "owner",
+      "type": {
+        "Relation": {
+          "to": "User",
+          "to_fields": [
+            "id"
+          ],
+          "name": "ProjectToUser",
+          "on_delete": "None"
+        }
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Project",
+      "name": "company",
+      "type": {
+        "Relation": {
+          "to": "Company",
+          "to_fields": [
+            "id"
+          ],
+          "name": "CompanyToProject",
+          "on_delete": "None"
+        }
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Project",
+      "name": "createdAt",
+      "type": {
+        "Base": "DateTime"
+      },
+      "arity": "required",
+      "isUnique": false,
+      "default": {
+        "Expression": [
+          "now",
+          "DateTime",
+          []
+        ]
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "ProjectProfile",
+      "name": "id",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false,
+      "id": {
+        "strategy": "Auto",
+        "sequence": null
+      },
+      "default": {
+        "Expression": [
+          "cuid",
+          "String",
+          []
+        ]
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "ProjectProfile",
+      "name": "businessUnit",
+      "type": {
+        "Relation": {
+          "to": "BusinessUnit",
+          "to_fields": [
+            "id"
+          ],
+          "name": "BusinessUnitToProjectProfile",
+          "on_delete": "None"
+        }
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "ProjectProfile",
+      "name": "project",
+      "type": {
+        "Relation": {
+          "to": "Project",
+          "to_fields": [
+            "id"
+          ],
+          "name": "ProjectToProjectProfile",
+          "on_delete": "None"
+        }
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "ProjectProfile",
+      "name": "spend",
+      "type": {
+        "Relation": {
+          "to": "Spend",
+          "to_fields": [],
+          "name": "ProjectProfileToSpend",
+          "on_delete": "None"
+        }
+      },
+      "arity": "list",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Spend",
+      "name": "id",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false,
+      "id": {
+        "strategy": "Auto",
+        "sequence": null
+      },
+      "default": {
+        "Expression": [
+          "cuid",
+          "String",
+          []
+        ]
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Spend",
+      "name": "month",
+      "type": {
+        "Base": "DateTime"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Spend",
+      "name": "baselineSpend",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Spend",
+      "name": "forecastedSavings",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Spend",
+      "name": "actualSavings",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Spend",
+      "name": "projectProfile",
+      "type": {
+        "Relation": {
+          "to": "ProjectProfile",
+          "to_fields": [
+            "id"
+          ],
+          "name": "ProjectProfileToSpend",
+          "on_delete": "None"
+        }
+      },
+      "arity": "required",
+      "isUnique": false
+    }
+  ]
+}

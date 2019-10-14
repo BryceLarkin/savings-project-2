@@ -1,0 +1,1 @@
+export { isUserPartOfCompany } from "./isUserPartOfCompany";
