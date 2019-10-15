@@ -1,0 +1,75 @@
+{
+  "name": "web-2-savings-project",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "get-schema": "apollo schema:download --endpoint=http://localhost:4000/ graphql-schema.json",
+    "codegen": "apollo codegen:generate --localSchemaFile=graphql-schema.json --target=typescript --includes=src/gql/*.ts --tagName=gql --addTypename --globalTypesFile=src/gql/__generated__/graphql-global-types.ts",
+    "update-types": "run-s get-schema codegen"
+  },
+  "dependencies": {
+    "@apollo/react-hooks": "^3.1.2",
+    "@apollo/react-testing": "^3.1.2",
+    "@graphql-codegen/cli": "^1.8.1",
+    "@graphql-codegen/typescript": "^1.8.1",
+    "@graphql-codegen/typescript-operations": "^1.8.1",
+    "@graphql-codegen/typescript-react-apollo": "^1.8.1",
+    "@material-ui/core": "^4.5.1",
+    "@testing-library/jest-dom": "^4.1.0",
+    "@testing-library/react": "^9.2.0",
+    "@types/classnames": "^2.2.9",
+    "@types/faker": "^4.1.5",
+    "@types/jest": "24.0.19",
+    "@types/lodash": "^4.14.141",
+    "@types/material-ui": "^0.21.7",
+    "@types/node": "12.7.12",
+    "@types/react": "16.9.6",
+    "@types/react-dom": "16.9.2",
+    "@types/react-router-dom": "^5.1.0",
+    "@types/shortid": "0.0.29",
+    "@types/yup": "^0.26.24",
+    "@typescript-eslint/eslint-plugin": "^2.3.3",
+    "@typescript-eslint/parser": "^2.3.3",
+    "apollo": "^2.19.1",
+    "apollo-boost": "^0.4.4",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-plugin-prettier": "^3.1.1",
+    "faker": "^4.1.0",
+    "firebase": "^7.2.0",
+    "graphql": "^14.5.8",
+    "graphql-tag": "^2.10.1",
+    "lodash": "^4.17.15",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.18.2",
+    "react": "^16.10.2",
+    "react-apollo": "^3.1.2",
+    "react-dom": "^16.10.2",
+    "react-firebase-hooks": "^2.1.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0",
+    "shortid": "^2.2.15",
+    "typescript": "3.6.4",
+    "use-react-router": "^1.0.7"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

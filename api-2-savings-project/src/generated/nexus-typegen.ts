@@ -93,7 +93,7 @@ export interface NexusGenFieldTypes {
   Mutation: { // field return type
     createProject: NexusGenRootTypes['Project']; // Project!
     createProjectProfiles: NexusGenRootTypes['ProjectProfile'][]; // [ProjectProfile!]!
-    createSpends: NexusGenRootTypes['Spend'][]; // [Spend!]!
+    createSpends: NexusGenRootTypes['ProjectProfile'][]; // [ProjectProfile!]!
   }
   Project: { // field return type
     company: NexusGenRootTypes['Company']; // Company!

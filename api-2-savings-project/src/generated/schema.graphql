@@ -41,7 +41,7 @@ scalar DateTime
 type Mutation {
   createProject(input: CreateProjectInput!): Project!
   createProjectProfiles(input: CreateProjectProfilesInput!): [ProjectProfile!]!
-  createSpends(input: [CreateSpendsInput!]!): [Spend!]!
+  createSpends(input: [CreateSpendsInput!]!): [ProjectProfile!]!
 }
 
 type Project {

@@ -2,7 +2,7 @@ import { mutationField, arg } from "nexus";
 import { createSpendsForProjectProfile } from "./createSpendsForProjectProfile";
 
 export const createSpendsMutation = mutationField("createSpends", {
-  type: "Spend",
+  type: "ProjectProfile",
   list: true,
   args: {
     input: arg({
@@ -16,6 +16,16 @@ export const createSpendsMutation = mutationField("createSpends", {
       .map(s => createSpendsForProjectProfile(photon, s))
       .flatten();
 
-    return spendPromises;
+    await Promise.all(spendPromises);
+
+    const projectProfileIds = input.map(spend => ({
+      id: spend.projectProfileId
+    }));
+
+    return photon.projectProfiles.findMany({
+      where: {
+        OR: projectProfileIds
+      }
+    });
   }
 });
