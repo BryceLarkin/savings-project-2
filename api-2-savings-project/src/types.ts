@@ -3,7 +3,7 @@ import * as admin from "firebase-admin";
 import { Auth, Storage, Email } from "./services";
 import { ContextParameters } from "graphql-yoga/dist/types";
 
-export interface User extends admin.auth.DecodedIdToken {
+export interface UserToken extends admin.auth.DecodedIdToken {
   companyId: string;
 }
 
@@ -11,7 +11,7 @@ export interface User extends admin.auth.DecodedIdToken {
 
 export interface Context extends ContextParameters {
   photon: Photon;
-  user: User;
+  user: UserToken;
   auth: Auth;
   storage: Storage;
   email: Email;
@@ -19,7 +19,7 @@ export interface Context extends ContextParameters {
 
 export interface ContextBeforeMiddleware extends ContextParameters {
   photon: Photon;
-  // user: User;
+  // user: UserToken;
   auth: Auth;
   storage: Storage;
   email: Email;

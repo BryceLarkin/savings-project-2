@@ -90,6 +90,7 @@ input SpendAmountAndDateInput {
 type User {
   company: Company!
   firstName: String!
+  fullName: String!
   id: ID!
   lastName: String!
   projects(after: String, before: String, first: Int, last: Int, skip: Int): [Project!]!

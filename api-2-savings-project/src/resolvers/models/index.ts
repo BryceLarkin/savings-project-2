@@ -1,5 +1,8 @@
 import * as baseModelObject from "./baseModels";
+import { AdditionalUserFields } from "./user";
 
-const models = Object.values(baseModelObject);
+const baseModelsArray = Object.values(baseModelObject);
+
+const models = [baseModelsArray, AdditionalUserFields];
 
 export { models };

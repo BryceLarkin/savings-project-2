@@ -1,0 +1,1 @@
+export { HandleQuery } from "./HandleQuery";

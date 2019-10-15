@@ -3,10 +3,8 @@ import { makeSchema } from "nexus";
 import { resolvers } from "../resolvers";
 import { join } from "path";
 
-const allTypes = [resolvers];
-
 const nexusPrisma = nexusPrismaPlugin({
-  types: allTypes
+  types: resolvers
 });
 
 const schema = makeSchema({

@@ -125,6 +125,7 @@ export interface NexusGenFieldTypes {
   User: { // field return type
     company: NexusGenRootTypes['Company']; // Company!
     firstName: string; // String!
+    fullName: string; // String!
     id: string; // ID!
     lastName: string; // String!
     projects: NexusGenRootTypes['Project'][]; // [Project!]!

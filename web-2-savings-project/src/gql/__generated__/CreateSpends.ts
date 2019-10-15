@@ -9,7 +9,7 @@ import { CreateSpendsInput } from "./graphql-global-types";
 // ====================================================
 
 export interface CreateSpends_createSpends {
-  __typename: "Spend";
+  __typename: "ProjectProfile";
   id: string;
 }
 
