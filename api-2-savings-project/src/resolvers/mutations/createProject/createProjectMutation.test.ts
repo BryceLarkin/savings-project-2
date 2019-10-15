@@ -1,10 +1,11 @@
 import { assert } from "chai";
 import { createClient, seedId, gql } from "../../../test";
 import { INVALID_OWNER_MSG } from "./createProjectMutation";
+import { CreateProjectInput } from "../../../graphql-types";
 
 describe("createProjectMutation", () => {
   it("creates a project", async () => {
-    const input = {
+    const input: CreateProjectInput = {
       name: "Software",
       ownerId: seedId.userId1
     };

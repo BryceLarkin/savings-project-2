@@ -6,6 +6,7 @@
     "seed:add": "ts-node prisma/seed/addProject.ts",
     "seed:firebase": "ts-node prisma/seed/seedFirebase.ts",
     "test": "ts-mocha -r dotenv/config -p tsconfig.json --watch-extensions ts --timeout 60000 -w src/**/*.test.ts",
+    "get-types": "graphql-codegen",
     "test:no-network": "ts-mocha -r dotenv/config -p tsconfig.json --watch-extensions ts --timeout 3000 --grep /network/i --invert -w src/**/*.test.ts",
     "postinstall": "run-s prisma:generate",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
@@ -40,6 +41,8 @@
     "stripe": "^7.10.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^1.8.1",
+    "@graphql-codegen/typescript": "^1.8.1",
     "@types/chai": "^4.2.3",
     "@types/faker": "^4.1.6",
     "@types/graphql-upload": "^8.0.3",

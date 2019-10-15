@@ -31,6 +31,20 @@ export interface NexusGenInputs {
     projectId: string; // String!
     projectProfiles: NexusGenInputs['CreateProjectProfileInput'][]; // [CreateProjectProfileInput!]!
   }
+  CreateSpendsInput: { // input type
+    projectProfileId: string; // String!
+    spendAmountsAndDates: NexusGenInputs['SpendAmountAndDateInput'][]; // [SpendAmountAndDateInput!]!
+  }
+  ProjectWhereUniqueInput: { // input type
+    id?: string | null; // ID
+    url?: string | null; // String
+  }
+  SpendAmountAndDateInput: { // input type
+    actualSavings?: number | null; // Int
+    baselineSpend: number; // Int!
+    forecastedSavings: number; // Int!
+    month: string; // String!
+  }
 }
 
 export interface NexusGenEnums {
@@ -57,6 +71,9 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   CreateProjectInput: NexusGenInputs['CreateProjectInput'];
   CreateProjectProfileInput: NexusGenInputs['CreateProjectProfileInput'];
   CreateProjectProfilesInput: NexusGenInputs['CreateProjectProfilesInput'];
+  CreateSpendsInput: NexusGenInputs['CreateSpendsInput'];
+  ProjectWhereUniqueInput: NexusGenInputs['ProjectWhereUniqueInput'];
+  SpendAmountAndDateInput: NexusGenInputs['SpendAmountAndDateInput'];
 }
 
 export interface NexusGenFieldTypes {
@@ -76,6 +93,7 @@ export interface NexusGenFieldTypes {
   Mutation: { // field return type
     createProject: NexusGenRootTypes['Project']; // Project!
     createProjectProfiles: NexusGenRootTypes['ProjectProfile'][]; // [ProjectProfile!]!
+    createSpends: NexusGenRootTypes['Spend'][]; // [Spend!]!
   }
   Project: { // field return type
     company: NexusGenRootTypes['Company']; // Company!
@@ -93,6 +111,7 @@ export interface NexusGenFieldTypes {
     spend: NexusGenRootTypes['Spend'][]; // [Spend!]!
   }
   Query: { // field return type
+    project: NexusGenRootTypes['Project'] | null; // Project
     projects: NexusGenRootTypes['Project'][]; // [Project!]!
   }
   Spend: { // field return type
@@ -152,6 +171,9 @@ export interface NexusGenArgTypes {
     createProjectProfiles: { // args
       input: NexusGenInputs['CreateProjectProfilesInput']; // CreateProjectProfilesInput!
     }
+    createSpends: { // args
+      input: NexusGenInputs['CreateSpendsInput'][]; // [CreateSpendsInput!]!
+    }
   }
   Project: {
     projectProfiles: { // args
@@ -172,6 +194,9 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
+    project: { // args
+      where: NexusGenInputs['ProjectWhereUniqueInput']; // ProjectWhereUniqueInput!
+    }
     projects: { // args
       after?: string | null; // String
       before?: string | null; // String
@@ -198,7 +223,7 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "BusinessUnit" | "Company" | "Mutation" | "Project" | "ProjectProfile" | "Query" | "Spend" | "User";
 
-export type NexusGenInputNames = "CreateProjectInput" | "CreateProjectProfileInput" | "CreateProjectProfilesInput";
+export type NexusGenInputNames = "CreateProjectInput" | "CreateProjectProfileInput" | "CreateProjectProfilesInput" | "CreateSpendsInput" | "ProjectWhereUniqueInput" | "SpendAmountAndDateInput";
 
 export type NexusGenEnumNames = never;
 

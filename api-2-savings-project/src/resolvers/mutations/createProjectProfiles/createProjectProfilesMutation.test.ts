@@ -1,22 +1,17 @@
 import { assert } from "chai";
-import { createClient, seedId, gql } from "../../../test";
+import { createClient, seedId, gql, createData } from "../../../test";
 import { photon } from "../../../config";
-import * as shortid from "shortid";
+import { CreateProjectProfilesInput } from "../../../graphql-types";
 
 describe("createProjectProfilesMutation", () => {
-  it.only("creates ProjectProfiles", async () => {
+  it("creates ProjectProfiles", async () => {
     const { mutate } = createClient();
 
     const project = await photon.projects.create({
-      data: {
-        name: shortid.generate(),
-        url: shortid.generate(),
-        owner: { connect: { id: seedId.userId1 } },
-        company: { connect: { id: seedId.companyId } }
-      }
+      data: createData.mockProject()
     });
 
-    const input = {
+    const input: CreateProjectProfilesInput = {
       projectId: project.id,
       projectProfiles: [
         { businessUnitId: seedId.businessUnitId1 },

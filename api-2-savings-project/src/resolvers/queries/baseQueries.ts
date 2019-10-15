@@ -4,5 +4,6 @@ export const baseQueries = objectType({
   name: "Query",
   definition(t) {
     t.crud.projects();
+    t.crud.project();
   }
 });

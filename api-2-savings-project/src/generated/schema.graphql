@@ -31,11 +31,17 @@ input CreateProjectProfilesInput {
   projectProfiles: [CreateProjectProfileInput!]!
 }
 
+input CreateSpendsInput {
+  projectProfileId: String!
+  spendAmountsAndDates: [SpendAmountAndDateInput!]!
+}
+
 scalar DateTime
 
 type Mutation {
   createProject(input: CreateProjectInput!): Project!
   createProjectProfiles(input: CreateProjectProfilesInput!): [ProjectProfile!]!
+  createSpends(input: [CreateSpendsInput!]!): [Spend!]!
 }
 
 type Project {
@@ -55,7 +61,13 @@ type ProjectProfile {
   spend(after: String, before: String, first: Int, last: Int, skip: Int): [Spend!]!
 }
 
+input ProjectWhereUniqueInput {
+  id: ID
+  url: String
+}
+
 type Query {
+  project(where: ProjectWhereUniqueInput!): Project
   projects(after: String, before: String, first: Int, last: Int, skip: Int): [Project!]!
 }
 
@@ -66,6 +78,13 @@ type Spend {
   id: ID!
   month: DateTime!
   projectProfile: ProjectProfile!
+}
+
+input SpendAmountAndDateInput {
+  actualSavings: Int
+  baselineSpend: Int!
+  forecastedSavings: Int!
+  month: String!
 }
 
 type User {
