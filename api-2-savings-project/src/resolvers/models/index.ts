@@ -1,8 +1,11 @@
-import * as baseModelObject from "./baseModels";
-import { AdditionalUserFields } from "./user";
+import * as baseModels from "./baseModels";
+import * as user from "./user";
+import * as project from "./project";
 
-const baseModelsArray = Object.values(baseModelObject);
-
-const models = [baseModelsArray, AdditionalUserFields];
+const models = [
+  Object.values(baseModels),
+  Object.values(user),
+  Object.values(project)
+];
 
 export { models };

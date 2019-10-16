@@ -25,6 +25,11 @@ export interface CreateSpendsInput {
   spendAmountsAndDates: SpendAmountAndDateInput[];
 }
 
+export interface ProjectWhereUniqueInput {
+  id?: string | null;
+  url?: string | null;
+}
+
 export interface SpendAmountAndDateInput {
   month: string;
   baselineSpend: number;

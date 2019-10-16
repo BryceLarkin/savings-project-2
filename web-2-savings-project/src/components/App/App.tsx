@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ApolloClient } from "apollo-client";
 import { ApolloProvider } from "react-apollo";
-// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 // import { createUploadLink } from "apollo-upload-client";
 import { createHttpLink } from "apollo-link-http";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -20,7 +20,8 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 // import * as R from "../Routing/constants";
 // import RoutesProject from "../RoutesProject";
 // import PrivateRoute from "../Routing/PrivateRoute";
-import { ReadProjects } from "../ReadProjects";
+// import { ReadProjects } from "../ReadProjects";
+import { Routes } from "../Routes/Routes";
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLogin] = useState(false);
@@ -59,7 +60,9 @@ const App: React.FC = () => {
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <ReadProjects />
+        <Router>
+          <Routes />
+        </Router>
       </ThemeProvider>
     </ApolloProvider>
   );

@@ -6,11 +6,6 @@
 // GraphQL query operation: ReadTableProjects
 // ====================================================
 
-export interface ReadTableProjects_projects_projectProfiles {
-  __typename: "ProjectProfile";
-  id: string;
-}
-
 export interface ReadTableProjects_projects_owner {
   __typename: "User";
   id: string;
@@ -22,7 +17,9 @@ export interface ReadTableProjects_projects {
   id: string;
   name: string;
   url: string;
-  projectProfiles: ReadTableProjects_projects_projectProfiles[];
+  totalForecastedSavingAmount: number;
+  totalForecastedSavingPercentage: number;
+  totalBaselineSpend: number;
   owner: ReadTableProjects_projects_owner;
 }
 

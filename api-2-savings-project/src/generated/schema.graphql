@@ -51,6 +51,9 @@ type Project {
   name: String!
   owner: User!
   projectProfiles(after: String, before: String, first: Int, last: Int, skip: Int): [ProjectProfile!]!
+  totalBaselineSpend: Int!
+  totalForecastedSavingAmount: Int!
+  totalForecastedSavingPercentage: Int!
   url: String!
 }
 

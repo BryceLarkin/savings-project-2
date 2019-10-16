@@ -102,6 +102,9 @@ export interface NexusGenFieldTypes {
     name: string; // String!
     owner: NexusGenRootTypes['User']; // User!
     projectProfiles: NexusGenRootTypes['ProjectProfile'][]; // [ProjectProfile!]!
+    totalBaselineSpend: number; // Int!
+    totalForecastedSavingAmount: number; // Int!
+    totalForecastedSavingPercentage: number; // Int!
     url: string; // String!
   }
   ProjectProfile: { // field return type

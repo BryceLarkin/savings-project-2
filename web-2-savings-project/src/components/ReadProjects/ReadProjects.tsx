@@ -14,8 +14,6 @@ export const ReadProjects: React.FC<{}> = props => {
     ReadTableProjectsVariables
   >(READ_TABLE_PROJECTS);
 
-  console.log(data, loading, error);
-
   return (
     <HandleQuery loading={loading} error={error}>
       {data && <TableProjects projects={data.projects} />}

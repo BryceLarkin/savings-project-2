@@ -18,9 +18,9 @@ export const READ_TABLE_PROJECTS = gql`
       id
       name
       url
-      projectProfiles {
-        id
-      }
+      totalForecastedSavingAmount
+      totalForecastedSavingPercentage
+      totalBaselineSpend
       owner {
         id
         fullName

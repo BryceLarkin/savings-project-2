@@ -4,5 +4,5 @@ import slugify from "slugify";
 export const slug = (str: string) => {
   const unique = `${str}-${shortid.generate()}`;
 
-  return slugify(unique);
+  return slugify(unique, { lower: true });
 };
