@@ -26,6 +26,7 @@ describe("filterSpendByDate", () => {
     forecastedSavings: 0,
     actualSavings: 0
   };
+
   it("removes Spend that fall out of date range", () => {
     const spend = [spend1, spend2, spend3];
     const filteredSpend = filterSpendByDate(spend, 15, 25);

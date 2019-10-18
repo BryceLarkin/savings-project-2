@@ -189,9 +189,14 @@ input ProjectWhereUniqueInput {
 }
 
 type Query {
+  businessunits(after: String, before: String, first: Int, last: Int, orderBy: QueryBusinessunitsOrderByInput, skip: Int): [BusinessUnit!]!
   filteredSpend(input: FilteredSpendInput!): Spend!
   project(where: ProjectWhereUniqueInput!): Project
   projects(after: String, before: String, first: Int, last: Int, orderBy: QueryProjectsOrderByInput, skip: Int, where: QueryProjectsWhereInput): [Project!]!
+}
+
+input QueryBusinessunitsOrderByInput {
+  name: OrderByArg
 }
 
 input QueryProjectsOrderByInput {

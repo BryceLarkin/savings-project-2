@@ -136,6 +136,9 @@ export interface NexusGenInputs {
     id?: string | null; // ID
     url?: string | null; // String
   }
+  QueryBusinessunitsOrderByInput: { // input type
+    name?: NexusGenEnums['OrderByArg'] | null; // OrderByArg
+  }
   QueryProjectsOrderByInput: { // input type
     name?: NexusGenEnums['OrderByArg'] | null; // OrderByArg
   }
@@ -234,6 +237,7 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   ProjectProjectProfilesWhereInput: NexusGenInputs['ProjectProjectProfilesWhereInput'];
   ProjectWhereInput: NexusGenInputs['ProjectWhereInput'];
   ProjectWhereUniqueInput: NexusGenInputs['ProjectWhereUniqueInput'];
+  QueryBusinessunitsOrderByInput: NexusGenInputs['QueryBusinessunitsOrderByInput'];
   QueryProjectsOrderByInput: NexusGenInputs['QueryProjectsOrderByInput'];
   QueryProjectsWhereInput: NexusGenInputs['QueryProjectsWhereInput'];
   SpendAmountAndDateInput: NexusGenInputs['SpendAmountAndDateInput'];
@@ -283,6 +287,7 @@ export interface NexusGenFieldTypes {
     spend: NexusGenRootTypes['Spend'][]; // [Spend!]!
   }
   Query: { // field return type
+    businessunits: NexusGenRootTypes['BusinessUnit'][]; // [BusinessUnit!]!
     filteredSpend: NexusGenRootTypes['Spend']; // Spend!
     project: NexusGenRootTypes['Project'] | null; // Project
     projects: NexusGenRootTypes['Project'][]; // [Project!]!
@@ -371,6 +376,14 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
+    businessunits: { // args
+      after?: string | null; // String
+      before?: string | null; // String
+      first?: number | null; // Int
+      last?: number | null; // Int
+      orderBy?: NexusGenInputs['QueryBusinessunitsOrderByInput'] | null; // QueryBusinessunitsOrderByInput
+      skip?: number | null; // Int
+    }
     filteredSpend: { // args
       input: NexusGenInputs['FilteredSpendInput']; // FilteredSpendInput!
     }
@@ -405,7 +418,7 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "BusinessUnit" | "Company" | "Mutation" | "Project" | "ProjectProfile" | "Query" | "Spend" | "User";
 
-export type NexusGenInputNames = "BusinessUnitFilter" | "BusinessUnitWhereInput" | "CompanyWhereInput" | "CreateProjectInput" | "CreateProjectProfileInput" | "CreateProjectProfilesInput" | "CreateSpendsInput" | "DateTimeFilter" | "FilteredSpendInput" | "IntFilter" | "NullableIntFilter" | "ProjectFilter" | "ProjectProfileFilter" | "ProjectProfileSpendOrderByInput" | "ProjectProfileWhereInput" | "ProjectProjectProfilesWhereInput" | "ProjectWhereInput" | "ProjectWhereUniqueInput" | "QueryProjectsOrderByInput" | "QueryProjectsWhereInput" | "SpendAmountAndDateInput" | "SpendFilter" | "SpendWhereInput" | "StringFilter" | "UserFilter" | "UserWhereInput";
+export type NexusGenInputNames = "BusinessUnitFilter" | "BusinessUnitWhereInput" | "CompanyWhereInput" | "CreateProjectInput" | "CreateProjectProfileInput" | "CreateProjectProfilesInput" | "CreateSpendsInput" | "DateTimeFilter" | "FilteredSpendInput" | "IntFilter" | "NullableIntFilter" | "ProjectFilter" | "ProjectProfileFilter" | "ProjectProfileSpendOrderByInput" | "ProjectProfileWhereInput" | "ProjectProjectProfilesWhereInput" | "ProjectWhereInput" | "ProjectWhereUniqueInput" | "QueryBusinessunitsOrderByInput" | "QueryProjectsOrderByInput" | "QueryProjectsWhereInput" | "SpendAmountAndDateInput" | "SpendFilter" | "SpendWhereInput" | "StringFilter" | "UserFilter" | "UserWhereInput";
 
 export type NexusGenEnumNames = "OrderByArg";
 
