@@ -38,7 +38,9 @@ export const Project = objectType({
     t.model.id();
     t.model.name();
     t.model.url();
-    t.model.projectProfiles();
+    t.model.projectProfiles({
+      filtering: { businessUnit: true }
+    });
     t.model.owner();
     t.model.company();
     t.model.createdAt();
@@ -51,7 +53,7 @@ export const ProjectProfile = objectType({
     t.model.id();
     t.model.businessUnit();
     t.model.project();
-    t.model.spend();
+    t.model.spend({ ordering: { month: true } });
   }
 });
 
@@ -61,7 +63,7 @@ export const Spend = objectType({
     t.model.id();
     t.model.month();
     t.model.baselineSpend();
-    t.model.forecastedSavings();
+    // t.model.forecastedSavings();
     t.model.actualSavings();
     t.model.projectProfile();
   }

@@ -4,7 +4,7 @@ import { createMuiTheme, Theme } from "@material-ui/core/styles";
 // export { default as useReadListStyle } from "./listStyle";
 // export { default as useLinkStyle } from "./linkStyle";
 // export { default as useAppBarLinkStyles } from "./appBarLinkStyle";
-// export { default as useListStyles } from "./listStyle";
+export { useListStyle } from "./useListStyle";
 // export { default as bottomNavigationStyle } from "./bottomNavigationStyle";
 
 export const theme = createMuiTheme({

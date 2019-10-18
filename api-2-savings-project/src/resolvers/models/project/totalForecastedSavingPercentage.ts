@@ -1,6 +1,7 @@
 import { getTotalBaselineSpend } from "./totalBaselineSpend";
 import { getTotalForcastedSavings } from "./totalForecastedSavingAmount";
 import { extendType } from "nexus";
+import { calculatePercentage } from "../../helpers";
 
 export const totalForecastedSavingPercentage = extendType({
   type: "Project",
@@ -20,15 +21,7 @@ export const totalForecastedSavingPercentage = extendType({
           forecastedSavingsPromise
         ]);
 
-        const percentage = Math.round(
-          (forecastedSavings / baselineSpend) * 100
-        );
-
-        if (Number.isInteger(percentage)) {
-          return percentage;
-        } else {
-          return 0;
-        }
+        return calculatePercentage(forecastedSavings, baselineSpend);
       }
     });
   }

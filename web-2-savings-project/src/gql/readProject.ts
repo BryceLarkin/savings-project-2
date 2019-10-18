@@ -6,20 +6,6 @@ export const READ_PROJECT = gql`
       id
       name
       url
-      projectProfiles {
-        id
-        businessUnit {
-          id
-          name
-        }
-        spend {
-          id
-          month
-          baselineSpend
-          forecastedSavings
-          actualSavings
-        }
-      }
       owner {
         id
         fullName
@@ -27,6 +13,21 @@ export const READ_PROJECT = gql`
       totalForecastedSavingAmount
       totalForecastedSavingPercentage
       totalBaselineSpend
+      projectProfiles {
+        id
+        businessUnit {
+          id
+          name
+        }
+        spend(orderBy: { month: asc }) {
+          id
+          month
+          forecastedSavingsAmount
+          forecastedSavingsPercentage
+          baselineSpend
+          actualSavings
+        }
+      }
     }
   }
 `;

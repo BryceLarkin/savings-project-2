@@ -8,6 +8,7 @@ import {
   ReadProjectVariables
 } from "../../gql/__generated__/ReadProject";
 import { HandleQuery } from "../HandleQuery";
+import { TableProject } from "./TableProject";
 // import { Typography } from "@material-ui/core";
 
 export const ReadProject: React.FC<{}> = props => {
@@ -23,6 +24,10 @@ export const ReadProject: React.FC<{}> = props => {
   >(READ_PROJECT, {
     variables: { where: { url: projectUrl } }
   });
-  console.log(data);
-  return <HandleQuery loading={loading} error={error}></HandleQuery>;
+
+  return (
+    <HandleQuery loading={loading} error={error}>
+      <TableProject data={data} />
+    </HandleQuery>
+  );
 };

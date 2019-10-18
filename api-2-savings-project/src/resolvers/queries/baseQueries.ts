@@ -3,7 +3,7 @@ import { objectType } from "nexus";
 export const baseQueries = objectType({
   name: "Query",
   definition(t) {
-    t.crud.projects();
+    t.crud.projects({ filtering: { url: true }, ordering: { name: true } });
     t.crud.project();
   }
 });

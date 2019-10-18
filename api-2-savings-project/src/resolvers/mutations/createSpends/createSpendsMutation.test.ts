@@ -1,11 +1,10 @@
 import { assert } from "chai";
 import { createClient, seedId, gql, createData } from "../../../test";
 import { photon } from "../../../config";
-import * as shortid from "shortid";
 import { CreateSpendsInput } from "../../../graphql-types";
 
 describe("createSpendsMutation", () => {
-  it.only("creates Spends for each project profile", async () => {
+  it("creates Spends for each project profile", async () => {
     const { mutate } = createClient();
 
     const project = await photon.projects.create({

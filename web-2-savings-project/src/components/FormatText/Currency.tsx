@@ -28,5 +28,5 @@ export const Currency: React.SFC<{
 
   const formatedCurrency = new Intl.NumberFormat(locale, options).format(data);
 
-  return <Typography>{formatedCurrency}</Typography>;
+  return <Typography align="right">{formatedCurrency}</Typography>;
 };

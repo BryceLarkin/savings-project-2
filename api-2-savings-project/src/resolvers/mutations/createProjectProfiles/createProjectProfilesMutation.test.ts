@@ -24,8 +24,6 @@ describe("createProjectProfilesMutation", () => {
       variables: { input }
     });
 
-    console.log(data, errors);
-
     assert.isUndefined(errors);
 
     const profiles = data.createProjectProfiles;
