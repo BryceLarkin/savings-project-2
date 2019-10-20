@@ -1,8 +1,8 @@
 import React from "react";
 import { ReadProject } from "../../gql/__generated__/ReadProject";
 import { Typography } from "@material-ui/core";
-import { useListStyle } from "../Theme";
-import { Currency } from "../FormatText/Currency";
+import { useListStyle } from "../../components/Theme";
+import { Currency } from "../../components/FormatText/Currency";
 import { TableProjectProfile } from "./TableProjectProfile";
 
 export const TableProject: React.FC<{

@@ -7,7 +7,7 @@ import {
   ReadProject as ReadProjectResponse,
   ReadProjectVariables
 } from "../../gql/__generated__/ReadProject";
-import { HandleQuery } from "../HandleQuery";
+import { HandleQuery } from "../../components/HandleQuery";
 import { TableProject } from "./TableProject";
 // import { Typography } from "@material-ui/core";
 

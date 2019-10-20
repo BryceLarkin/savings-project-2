@@ -9,10 +9,10 @@ import {
   createStyles,
   TableHead
 } from "@material-ui/core";
-import { ITheme } from "../Theme";
-import { Currency } from "../FormatText/Currency";
+import { ITheme } from "../../components/Theme";
+import { Currency } from "../../components/FormatText/Currency";
 import { ReadProject_project_projectProfiles_spend } from "../../gql/__generated__/ReadProject";
-import { Percentage } from "../FormatText";
+import { Percentage } from "../../components/FormatText";
 import dayjs from "dayjs";
 
 const useStyles = makeStyles((theme: ITheme) =>

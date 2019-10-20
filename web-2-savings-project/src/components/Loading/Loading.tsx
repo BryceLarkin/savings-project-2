@@ -1,7 +1,10 @@
 import React from "react";
 import { CircularProgress } from "@material-ui/core";
 
-const Loading: React.SFC<{ loading?: boolean; size?: number }> = props => {
+export const Loading: React.SFC<{
+  loading?: boolean;
+  size?: number;
+}> = props => {
   const { loading = true, size } = props;
 
   return (
@@ -12,5 +15,3 @@ const Loading: React.SFC<{ loading?: boolean; size?: number }> = props => {
     />
   );
 };
-
-export default Loading;

@@ -12,10 +12,10 @@ import {
   Link,
   Typography
 } from "@material-ui/core";
-import { ITheme } from "../Theme";
-import { LinkProject } from "../Links";
-import { Percentage } from "../FormatText";
-import { Currency } from "../FormatText/Currency";
+import { ITheme } from "../../components/Theme";
+import { LinkProject } from "../../components/Links";
+import { Percentage } from "../../components/FormatText";
+import { Currency } from "../../components/FormatText/Currency";
 
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({

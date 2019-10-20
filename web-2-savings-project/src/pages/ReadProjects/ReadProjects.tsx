@@ -5,7 +5,7 @@ import {
   ReadTableProjectsVariables
 } from "../../gql/__generated__/ReadTableProjects";
 import { useQuery } from "@apollo/react-hooks";
-import { HandleQuery } from "../HandleQuery";
+import { HandleQuery } from "../../components/HandleQuery";
 import { TableProjects } from "./TableProjects";
 
 export const ReadProjects: React.FC<{}> = props => {

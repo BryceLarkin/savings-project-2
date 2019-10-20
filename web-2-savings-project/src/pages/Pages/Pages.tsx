@@ -1,11 +1,11 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { R } from "../../constants";
-import { ReadProjects } from "../../pages/ReadProjects";
-import { ReadProject } from "../../pages/ReadProject";
-import { PickersProjectsBUs } from "../../pages/PickersProjectsBUs";
+import { ReadProjects } from "../ReadProjects";
+import { ReadProject } from "../ReadProject";
+import { PickersProjectsBUs } from "../PickersProjectsBUs";
 
-export const Routes: React.SFC<{}> = () => {
+export const Pages: React.SFC<{}> = () => {
   return (
     <Switch>
       <Route exact path={R.PROJECTS} component={ReadProjects} />

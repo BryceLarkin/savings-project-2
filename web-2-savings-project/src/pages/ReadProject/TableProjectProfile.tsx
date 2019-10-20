@@ -1,5 +1,5 @@
 import React from "react";
-import { useListStyle } from "../Theme";
+import { useListStyle } from "../../components/Theme";
 import { ReadProject_project_projectProfiles } from "../../gql/__generated__/ReadProject";
 import { Typography } from "@material-ui/core";
 import { TableSpend } from "./TableSpend";

@@ -10,20 +10,14 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import firebase from "../../services/firebase";
 // import routes from "../Routing/routes";
 import { ThemeProvider } from "@material-ui/styles";
-import theme from "../Theme";
+import theme from "../../components/Theme";
 // import useMediaQuery from "@material-ui/core/useMediaQuery";
 import CssBaseline from "@material-ui/core/CssBaseline";
-// import Layout from "../Layout";
-// import Landing from "../Landing";
-// import BottomNavigation from "../BottomNavigation";
-// import AppBar from "../AppBar";
-// import * as R from "../Routing/constants";
-// import RoutesProject from "../RoutesProject";
-// import PrivateRoute from "../Routing/PrivateRoute";
-// import { ReadProjects } from "../ReadProjects";
-import { Routes } from "../Routes/Routes";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
+import { Pages } from "../Pages";
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
   const [isLoggedIn, setIsLogin] = useState(false);
   const [user] = useAuthState(firebase.auth());
   // const isMobile = useMediaQuery("(max-width:600px)");
@@ -60,12 +54,12 @@ const App: React.FC = () => {
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Router>
-          <Routes />
-        </Router>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <Router>
+            <Pages />
+          </Router>
+        </MuiPickersUtilsProvider>
       </ThemeProvider>
     </ApolloProvider>
   );
 };
-
-export default App;
