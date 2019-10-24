@@ -4,7 +4,7 @@ export const forecastedSavingsAmount = extendType({
   type: "Spend",
   definition(t) {
     t.int("forecastedSavingsAmount", {
-      resolve: async ({ forecastedSavings }) => forecastedSavings
+      resolve: async ({ forecastedSavingsAmount }) => forecastedSavingsAmount
     });
   }
 });

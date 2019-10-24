@@ -6,9 +6,9 @@ import {
 import { Omit } from "@material-ui/types";
 import { R } from "../../constants";
 
-export const LinkProject = (projectId: string) =>
+export const LinkProject = (projectUrl: string) =>
   React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, "innerRef" | "to">>(
     (props, ref) => (
-      <RouterLink innerRef={ref} to={R.PROJECT_FN(projectId)} {...props} />
+      <RouterLink innerRef={ref} to={R.PROJECT_FN(projectUrl)} {...props} />
     )
   );

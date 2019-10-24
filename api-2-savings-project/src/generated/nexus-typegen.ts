@@ -69,12 +69,6 @@ export interface NexusGenInputs {
     not?: any | null; // DateTime
     notIn?: any[] | null; // [DateTime!]
   }
-  FilteredSpendInput: { // input type
-    businessUnitId: string; // String!
-    endPeriod: string; // String!
-    projectId: string; // String!
-    startPeriod: string; // String!
-  }
   IntFilter: { // input type
     equals?: number | null; // Int
     gt?: number | null; // Int
@@ -145,6 +139,13 @@ export interface NexusGenInputs {
   QueryProjectsWhereInput: { // input type
     url?: NexusGenInputs['StringFilter'] | null; // StringFilter
   }
+  ReportDataTableInput: { // input type
+    businessUnitIds: string[]; // [String!]!
+    dataType: NexusGenEnums['ReportDataType']; // ReportDataType!
+    endPeriod: string; // String!
+    projectIds: string[]; // [String!]!
+    startPeriod: string; // String!
+  }
   SpendAmountAndDateInput: { // input type
     actualSavings?: number | null; // Int
     baselineSpend: number; // Int!
@@ -160,7 +161,8 @@ export interface NexusGenInputs {
     actualSavings?: NexusGenInputs['NullableIntFilter'] | null; // NullableIntFilter
     AND?: NexusGenInputs['SpendWhereInput'][] | null; // [SpendWhereInput!]
     baselineSpend?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    forecastedSavings?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    forecastedSavingsAmount?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    forecastedSavingsPercentage?: NexusGenInputs['IntFilter'] | null; // IntFilter
     id?: NexusGenInputs['StringFilter'] | null; // StringFilter
     month?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     NOT?: NexusGenInputs['SpendWhereInput'][] | null; // [SpendWhereInput!]
@@ -199,6 +201,7 @@ export interface NexusGenInputs {
 
 export interface NexusGenEnums {
   OrderByArg: photon.OrderByArg
+  ReportDataType: "ActualSavings" | "BaselineSpend" | "ForecastedSavingsAmount" | "ForecastedSavingsPercentage"
 }
 
 export interface NexusGenRootTypes {
@@ -208,6 +211,18 @@ export interface NexusGenRootTypes {
   Project: photon.Project;
   ProjectProfile: photon.ProjectProfile;
   Query: {};
+  ReportTableData: { // root type
+    data: NexusGenRootTypes['ReportTableRowData'][]; // [ReportTableRowData!]!
+    id: string; // String!
+    projectName: string; // String!
+    projectUrl: string; // String!
+  }
+  ReportTableRowData: { // root type
+    amount: number; // Int!
+    columnId: string; // String!
+    columnName: string; // String!
+    id: string; // String!
+  }
   Spend: photon.Spend;
   User: ctx.User;
   String: string;
@@ -227,7 +242,6 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   CreateProjectProfilesInput: NexusGenInputs['CreateProjectProfilesInput'];
   CreateSpendsInput: NexusGenInputs['CreateSpendsInput'];
   DateTimeFilter: NexusGenInputs['DateTimeFilter'];
-  FilteredSpendInput: NexusGenInputs['FilteredSpendInput'];
   IntFilter: NexusGenInputs['IntFilter'];
   NullableIntFilter: NexusGenInputs['NullableIntFilter'];
   ProjectFilter: NexusGenInputs['ProjectFilter'];
@@ -240,6 +254,7 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   QueryBusinessunitsOrderByInput: NexusGenInputs['QueryBusinessunitsOrderByInput'];
   QueryProjectsOrderByInput: NexusGenInputs['QueryProjectsOrderByInput'];
   QueryProjectsWhereInput: NexusGenInputs['QueryProjectsWhereInput'];
+  ReportDataTableInput: NexusGenInputs['ReportDataTableInput'];
   SpendAmountAndDateInput: NexusGenInputs['SpendAmountAndDateInput'];
   SpendFilter: NexusGenInputs['SpendFilter'];
   SpendWhereInput: NexusGenInputs['SpendWhereInput'];
@@ -247,6 +262,7 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   UserFilter: NexusGenInputs['UserFilter'];
   UserWhereInput: NexusGenInputs['UserWhereInput'];
   OrderByArg: NexusGenEnums['OrderByArg'];
+  ReportDataType: NexusGenEnums['ReportDataType'];
 }
 
 export interface NexusGenFieldTypes {
@@ -288,9 +304,21 @@ export interface NexusGenFieldTypes {
   }
   Query: { // field return type
     businessunits: NexusGenRootTypes['BusinessUnit'][]; // [BusinessUnit!]!
-    filteredSpend: NexusGenRootTypes['Spend']; // Spend!
     project: NexusGenRootTypes['Project'] | null; // Project
     projects: NexusGenRootTypes['Project'][]; // [Project!]!
+    reportTableData: NexusGenRootTypes['ReportTableData'][]; // [ReportTableData!]!
+  }
+  ReportTableData: { // field return type
+    data: NexusGenRootTypes['ReportTableRowData'][]; // [ReportTableRowData!]!
+    id: string; // String!
+    projectName: string; // String!
+    projectUrl: string; // String!
+  }
+  ReportTableRowData: { // field return type
+    amount: number; // Int!
+    columnId: string; // String!
+    columnName: string; // String!
+    id: string; // String!
   }
   Spend: { // field return type
     actualSavings: number | null; // Int
@@ -384,9 +412,6 @@ export interface NexusGenArgTypes {
       orderBy?: NexusGenInputs['QueryBusinessunitsOrderByInput'] | null; // QueryBusinessunitsOrderByInput
       skip?: number | null; // Int
     }
-    filteredSpend: { // args
-      input: NexusGenInputs['FilteredSpendInput']; // FilteredSpendInput!
-    }
     project: { // args
       where: NexusGenInputs['ProjectWhereUniqueInput']; // ProjectWhereUniqueInput!
     }
@@ -398,6 +423,9 @@ export interface NexusGenArgTypes {
       orderBy?: NexusGenInputs['QueryProjectsOrderByInput'] | null; // QueryProjectsOrderByInput
       skip?: number | null; // Int
       where?: NexusGenInputs['QueryProjectsWhereInput'] | null; // QueryProjectsWhereInput
+    }
+    reportTableData: { // args
+      input: NexusGenInputs['ReportDataTableInput']; // ReportDataTableInput!
     }
   }
   User: {
@@ -416,11 +444,11 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "BusinessUnit" | "Company" | "Mutation" | "Project" | "ProjectProfile" | "Query" | "Spend" | "User";
+export type NexusGenObjectNames = "BusinessUnit" | "Company" | "Mutation" | "Project" | "ProjectProfile" | "Query" | "ReportTableData" | "ReportTableRowData" | "Spend" | "User";
 
-export type NexusGenInputNames = "BusinessUnitFilter" | "BusinessUnitWhereInput" | "CompanyWhereInput" | "CreateProjectInput" | "CreateProjectProfileInput" | "CreateProjectProfilesInput" | "CreateSpendsInput" | "DateTimeFilter" | "FilteredSpendInput" | "IntFilter" | "NullableIntFilter" | "ProjectFilter" | "ProjectProfileFilter" | "ProjectProfileSpendOrderByInput" | "ProjectProfileWhereInput" | "ProjectProjectProfilesWhereInput" | "ProjectWhereInput" | "ProjectWhereUniqueInput" | "QueryBusinessunitsOrderByInput" | "QueryProjectsOrderByInput" | "QueryProjectsWhereInput" | "SpendAmountAndDateInput" | "SpendFilter" | "SpendWhereInput" | "StringFilter" | "UserFilter" | "UserWhereInput";
+export type NexusGenInputNames = "BusinessUnitFilter" | "BusinessUnitWhereInput" | "CompanyWhereInput" | "CreateProjectInput" | "CreateProjectProfileInput" | "CreateProjectProfilesInput" | "CreateSpendsInput" | "DateTimeFilter" | "IntFilter" | "NullableIntFilter" | "ProjectFilter" | "ProjectProfileFilter" | "ProjectProfileSpendOrderByInput" | "ProjectProfileWhereInput" | "ProjectProjectProfilesWhereInput" | "ProjectWhereInput" | "ProjectWhereUniqueInput" | "QueryBusinessunitsOrderByInput" | "QueryProjectsOrderByInput" | "QueryProjectsWhereInput" | "ReportDataTableInput" | "SpendAmountAndDateInput" | "SpendFilter" | "SpendWhereInput" | "StringFilter" | "UserFilter" | "UserWhereInput";
 
-export type NexusGenEnumNames = "OrderByArg";
+export type NexusGenEnumNames = "OrderByArg" | "ReportDataType";
 
 export type NexusGenInterfaceNames = never;
 

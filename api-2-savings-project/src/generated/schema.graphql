@@ -76,17 +76,6 @@ input DateTimeFilter {
   notIn: [DateTime!]
 }
 
-input FilteredSpendInput {
-  businessUnitId: String!
-
-  """timestamp in milliseconds"""
-  endPeriod: String!
-  projectId: String!
-
-  """timestamp in milliseconds"""
-  startPeriod: String!
-}
-
 input IntFilter {
   equals: Int
   gt: Int
@@ -190,9 +179,9 @@ input ProjectWhereUniqueInput {
 
 type Query {
   businessunits(after: String, before: String, first: Int, last: Int, orderBy: QueryBusinessunitsOrderByInput, skip: Int): [BusinessUnit!]!
-  filteredSpend(input: FilteredSpendInput!): Spend!
   project(where: ProjectWhereUniqueInput!): Project
   projects(after: String, before: String, first: Int, last: Int, orderBy: QueryProjectsOrderByInput, skip: Int, where: QueryProjectsWhereInput): [Project!]!
+  reportTableData(input: ReportDataTableInput!): [ReportTableData!]!
 }
 
 input QueryBusinessunitsOrderByInput {
@@ -205,6 +194,39 @@ input QueryProjectsOrderByInput {
 
 input QueryProjectsWhereInput {
   url: StringFilter
+}
+
+input ReportDataTableInput {
+  businessUnitIds: [String!]!
+  dataType: ReportDataType!
+
+  """timestamp in milliseconds"""
+  endPeriod: String!
+  projectIds: [String!]!
+
+  """timestamp in milliseconds"""
+  startPeriod: String!
+}
+
+enum ReportDataType {
+  ActualSavings
+  BaselineSpend
+  ForecastedSavingsAmount
+  ForecastedSavingsPercentage
+}
+
+type ReportTableData {
+  data: [ReportTableRowData!]!
+  id: String!
+  projectName: String!
+  projectUrl: String!
+}
+
+type ReportTableRowData {
+  amount: Int!
+  columnId: String!
+  columnName: String!
+  id: String!
 }
 
 type Spend {
@@ -234,7 +256,8 @@ input SpendWhereInput {
   actualSavings: NullableIntFilter
   AND: [SpendWhereInput!]
   baselineSpend: IntFilter
-  forecastedSavings: IntFilter
+  forecastedSavingsAmount: IntFilter
+  forecastedSavingsPercentage: IntFilter
   id: StringFilter
   month: DateTimeFilter
   NOT: [SpendWhereInput!]

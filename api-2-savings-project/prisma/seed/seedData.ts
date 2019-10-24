@@ -46,7 +46,8 @@ const spend1: SpendCreateWithoutProjectProfileInput = {
   id: id.spendId1,
   month: new Date(1600128000000),
   baselineSpend: 50000,
-  forecastedSavings: 5000,
+  forecastedSavingsAmount: 5000,
+  forecastedSavingsPercentage: Math.round((4500 / 50000) * 100),
   actualSavings: 4500
 };
 
@@ -54,7 +55,8 @@ const spend2: SpendCreateWithoutProjectProfileInput = {
   id: id.spendId2,
   month: new Date(1602720000000),
   baselineSpend: 60000,
-  forecastedSavings: 5000,
+  forecastedSavingsAmount: 5000,
+  forecastedSavingsPercentage: Math.round((4500 / 60000) * 100),
   actualSavings: 4500
 };
 
@@ -62,7 +64,8 @@ const spend3: SpendCreateWithoutProjectProfileInput = {
   id: id.spendId3,
   month: new Date(1605398400000),
   baselineSpend: 50000,
-  forecastedSavings: 5000,
+  forecastedSavingsAmount: 5000,
+  forecastedSavingsPercentage: Math.round((4500 / 50000) * 100),
   actualSavings: 4500
 };
 
@@ -70,7 +73,8 @@ const spend4: SpendCreateWithoutProjectProfileInput = {
   id: id.spendId4,
   month: new Date(1607990400000),
   baselineSpend: 50000,
-  forecastedSavings: 5000,
+  forecastedSavingsAmount: 5000,
+  forecastedSavingsPercentage: Math.round((4500 / 50000) * 100),
   actualSavings: 4500
 };
 
@@ -78,7 +82,8 @@ const spend5: SpendCreateWithoutProjectProfileInput = {
   id: id.spendId5,
   month: new Date(1610668800000),
   baselineSpend: 50000,
-  forecastedSavings: 5000,
+  forecastedSavingsAmount: 5000,
+  forecastedSavingsPercentage: Math.round((4500 / 50000) * 100),
   actualSavings: 4500
 };
 
@@ -86,7 +91,8 @@ const spend6: SpendCreateWithoutProjectProfileInput = {
   id: id.spendId6,
   month: new Date(1613347200000),
   baselineSpend: 50000,
-  forecastedSavings: 5000,
+  forecastedSavingsAmount: 5000,
+  forecastedSavingsPercentage: Math.round((4500 / 50000) * 100),
   actualSavings: 4500
 };
 
@@ -94,7 +100,8 @@ const spend7: SpendCreateWithoutProjectProfileInput = {
   id: id.spendId7,
   month: new Date(1615766400000),
   baselineSpend: 50000,
-  forecastedSavings: 5000,
+  forecastedSavingsAmount: 5000,
+  forecastedSavingsPercentage: Math.round((4500 / 50000) * 100),
   actualSavings: 4500
 };
 
@@ -102,7 +109,8 @@ const spend8: SpendCreateWithoutProjectProfileInput = {
   id: id.spendId8,
   month: new Date(1636934400000),
   baselineSpend: 50000,
-  forecastedSavings: 5000,
+  forecastedSavingsAmount: 5000,
+  forecastedSavingsPercentage: Math.round((4500 / 50000) * 100),
   actualSavings: 4500
 };
 
@@ -110,7 +118,8 @@ const spend9: SpendCreateWithoutProjectProfileInput = {
   id: id.spendId9,
   month: new Date(1639526400000),
   baselineSpend: 50000,
-  forecastedSavings: 5000,
+  forecastedSavingsAmount: 5000,
+  forecastedSavingsPercentage: Math.round((4500 / 50000) * 100),
   actualSavings: 4500
 };
 
@@ -118,7 +127,8 @@ const spend10: SpendCreateWithoutProjectProfileInput = {
   id: id.spendId10,
   month: new Date(1642204800000),
   baselineSpend: 50000,
-  forecastedSavings: 5000,
+  forecastedSavingsAmount: 5000,
+  forecastedSavingsPercentage: Math.round((4500 / 50000) * 100),
   actualSavings: 4500
 };
 
@@ -126,7 +136,8 @@ const spend11: SpendCreateWithoutProjectProfileInput = {
   id: id.spendId11,
   month: new Date(1644883200000),
   baselineSpend: 50000,
-  forecastedSavings: 5000,
+  forecastedSavingsAmount: 5000,
+  forecastedSavingsPercentage: Math.round((4500 / 50000) * 100),
   actualSavings: 4500
 };
 
@@ -134,7 +145,8 @@ const spend12: SpendCreateWithoutProjectProfileInput = {
   id: id.spendId12,
   month: new Date(1647302400000),
   baselineSpend: 50000,
-  forecastedSavings: 5000,
+  forecastedSavingsAmount: 5000,
+  forecastedSavingsPercentage: Math.round((4500 / 50000) * 100),
   actualSavings: 4500
 };
 

@@ -7,13 +7,15 @@ export const getTotalForcastedSavings = async (
 ) => {
   const projectProfiles = await photon.projectProfiles.findMany({
     where: { project: { id: projectId } },
-    select: { spend: { select: { forecastedSavings: true } } }
+    select: { spend: { select: { forecastedSavingsAmount: true } } }
   });
 
   const spend = projectProfiles.reduce((acc, projectProfile) => {
     const spendForProjectProfile = projectProfile.spend.reduce(
-      (projectProfileSpend, spend) =>
-        projectProfileSpend + spend.forecastedSavings,
+      (projectProfileSpend, { forecastedSavingsAmount }) =>
+        forecastedSavingsAmount
+          ? projectProfileSpend + forecastedSavingsAmount
+          : 0,
       0
     );
 

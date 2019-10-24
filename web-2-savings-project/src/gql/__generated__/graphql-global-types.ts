@@ -6,6 +6,13 @@
 // START Enums and Input Objects
 //==============================================================
 
+export enum ReportDataType {
+  ActualSavings = "ActualSavings",
+  BaselineSpend = "BaselineSpend",
+  ForecastedSavingsAmount = "ForecastedSavingsAmount",
+  ForecastedSavingsPercentage = "ForecastedSavingsPercentage",
+}
+
 export interface CreateProjectInput {
   name: string;
   ownerId: string;
@@ -25,16 +32,17 @@ export interface CreateSpendsInput {
   spendAmountsAndDates: SpendAmountAndDateInput[];
 }
 
-export interface FilteredSpendInput {
-  startPeriod: string;
-  endPeriod: string;
-  projectId: string;
-  businessUnitId: string;
-}
-
 export interface ProjectWhereUniqueInput {
   id?: string | null;
   url?: string | null;
+}
+
+export interface ReportDataTableInput {
+  startPeriod: string;
+  endPeriod: string;
+  projectIds: string[];
+  businessUnitIds: string[];
+  dataType: ReportDataType;
 }
 
 export interface SpendAmountAndDateInput {

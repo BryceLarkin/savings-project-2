@@ -120,15 +120,6 @@ export type DateTimeFilter = {
   gte?: Maybe<Scalars['DateTime']>,
 };
 
-export type FilteredSpendInput = {
-  /** timestamp in milliseconds */
-  startPeriod: Scalars['String'],
-  /** timestamp in milliseconds */
-  endPeriod: Scalars['String'],
-  projectId: Scalars['String'],
-  businessUnitId: Scalars['String'],
-};
-
 export type IntFilter = {
   equals?: Maybe<Scalars['Int']>,
   not?: Maybe<Scalars['Int']>,
@@ -271,13 +262,25 @@ export type ProjectWhereUniqueInput = {
 export type Query = {
    __typename?: 'Query',
   projects: Array<Project>,
+  businessunits: Array<BusinessUnit>,
   project?: Maybe<Project>,
-  filteredSpend: Spend,
+  reportTableData: Array<ReportTableData>,
 };
 
 
 export type QueryProjectsArgs = {
   where?: Maybe<QueryProjectsWhereInput>,
+  orderBy?: Maybe<QueryProjectsOrderByInput>,
+  skip?: Maybe<Scalars['Int']>,
+  after?: Maybe<Scalars['String']>,
+  before?: Maybe<Scalars['String']>,
+  first?: Maybe<Scalars['Int']>,
+  last?: Maybe<Scalars['Int']>
+};
+
+
+export type QueryBusinessunitsArgs = {
+  orderBy?: Maybe<QueryBusinessunitsOrderByInput>,
   skip?: Maybe<Scalars['Int']>,
   after?: Maybe<Scalars['String']>,
   before?: Maybe<Scalars['String']>,
@@ -291,12 +294,53 @@ export type QueryProjectArgs = {
 };
 
 
-export type QueryFilteredSpendArgs = {
-  input: FilteredSpendInput
+export type QueryReportTableDataArgs = {
+  input: ReportDataTableInput
+};
+
+export type QueryBusinessunitsOrderByInput = {
+  name?: Maybe<OrderByArg>,
+};
+
+export type QueryProjectsOrderByInput = {
+  name?: Maybe<OrderByArg>,
 };
 
 export type QueryProjectsWhereInput = {
   url?: Maybe<StringFilter>,
+};
+
+export type ReportDataTableInput = {
+  /** timestamp in milliseconds */
+  startPeriod: Scalars['String'],
+  /** timestamp in milliseconds */
+  endPeriod: Scalars['String'],
+  projectIds: Array<Scalars['String']>,
+  businessUnitIds: Array<Scalars['String']>,
+  dataType: ReportDataType,
+};
+
+export enum ReportDataType {
+  BaselineSpend = 'BaselineSpend',
+  ActualSavings = 'ActualSavings',
+  ForecastedSavingsPercentage = 'ForecastedSavingsPercentage',
+  ForecastedSavingsAmount = 'ForecastedSavingsAmount'
+}
+
+export type ReportTableData = {
+   __typename?: 'ReportTableData',
+  id: Scalars['String'],
+  projectUrl: Scalars['String'],
+  projectName: Scalars['String'],
+  data: Array<ReportTableRowData>,
+};
+
+export type ReportTableRowData = {
+   __typename?: 'ReportTableRowData',
+  id: Scalars['String'],
+  columnName: Scalars['String'],
+  columnId: Scalars['String'],
+  amount: Scalars['Int'],
 };
 
 export type Spend = {
@@ -327,7 +371,8 @@ export type SpendWhereInput = {
   id?: Maybe<StringFilter>,
   month?: Maybe<DateTimeFilter>,
   baselineSpend?: Maybe<IntFilter>,
-  forecastedSavings?: Maybe<IntFilter>,
+  forecastedSavingsAmount?: Maybe<IntFilter>,
+  forecastedSavingsPercentage?: Maybe<IntFilter>,
   actualSavings?: Maybe<NullableIntFilter>,
   AND?: Maybe<Array<SpendWhereInput>>,
   OR?: Maybe<Array<SpendWhereInput>>,

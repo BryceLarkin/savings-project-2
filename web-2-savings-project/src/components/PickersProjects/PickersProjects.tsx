@@ -16,17 +16,9 @@ export const PickersProjects: React.FC<{}> = props => {
           {projectIds && projectIds.length > 0 ? (
             projectIds.map((projectId, i) => (
               <div key={i}>
-                <PickerProject name={`projectIds.${i}`} />{" "}
-                <Button
-                  onClick={() => arrayHelpers.remove(i)} // remove a friend from the list
-                >
-                  -
-                </Button>
-                <Button
-                  onClick={() => arrayHelpers.insert(i, "")} // insert an empty string at a position
-                >
-                  +
-                </Button>
+                <PickerProject name={`projectIds.${i}`} />
+                <Button onClick={() => arrayHelpers.remove(i)}>-</Button>
+                <Button onClick={() => arrayHelpers.push("")}>+</Button>
               </div>
             ))
           ) : (

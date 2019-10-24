@@ -7,5 +7,5 @@ export const filterSpendByDate = (
   endPeriod: number
 ): Spend[] =>
   spend.filter(s =>
-    moment(s.month).isBetween(startPeriod, endPeriod, null, "[]")
+    moment(s.month).isBetween(startPeriod, endPeriod, "day", "[]")
   );

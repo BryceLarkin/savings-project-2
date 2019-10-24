@@ -1,4 +1,4 @@
 import { baseQueries } from "./baseQueries";
-import * as spend from "./spend";
+import * as reportData from "./reportData";
 
-export const queries = [baseQueries, Object.values(spend)];
+export const queries = [baseQueries, Object.values(reportData)];

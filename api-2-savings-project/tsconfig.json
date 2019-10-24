@@ -8,6 +8,7 @@
     "alwaysStrict": true,
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
-    "skipLibCheck": false
+    "skipLibCheck": false,
+    "strictNullChecks": true
   }
 }

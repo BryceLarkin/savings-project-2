@@ -3,15 +3,18 @@ import { Field, useField } from "formik";
 import { TextField } from "formik-material-ui";
 import { TextFieldProps } from "./textFieldProps";
 
-// interface SelectProps extends TextFieldProps {
-//   value: any;
-// }
+interface SelectProps extends TextFieldProps {
+  width?: number;
+  multiple?: boolean;
+}
 
-export const Select: React.FC<TextFieldProps> = ({
+export const Select: React.FC<SelectProps> = ({
   name,
   label,
   dataCy,
   children,
+  width = 200,
+  multiple = false,
   ...rest
 }) => {
   const [field] = useField(name);
@@ -22,11 +25,12 @@ export const Select: React.FC<TextFieldProps> = ({
       label={label}
       data-cy={dataCy}
       component={TextField}
-      style={{ width: 200 }}
+      style={{ width }}
       value={field.value}
+      multiple
       {...rest}
       select
-      // variant="outlined"
+      variant="outlined"
     >
       {children}
     </Field>

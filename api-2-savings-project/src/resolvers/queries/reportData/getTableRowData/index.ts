@@ -1,0 +1,1 @@
+export { getTableRowData } from "./getTableRowData";

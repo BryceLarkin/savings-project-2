@@ -9,3 +9,5 @@ export interface PROJECT_PARAMS {
 
 export const USER = "/users/:userId";
 export const USER_FN = (userId: string) => `/users/${userId}`;
+
+export const REPORT = "/reports";
