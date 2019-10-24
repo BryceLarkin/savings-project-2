@@ -100,7 +100,7 @@ export function TransferList<T>(props: TransferListProps<T>): JSX.Element {
         className={classes.cardHeader}
         title={title}
         titleTypographyProps={{
-          variant: "subtitle1"
+          variant: "body1"
         }}
       />
       <Divider />

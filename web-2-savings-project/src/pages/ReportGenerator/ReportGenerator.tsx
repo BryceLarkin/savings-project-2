@@ -13,6 +13,7 @@ import {
 } from "../../gql/__generated__/graphql-global-types";
 import { TransferListProjects } from "../../components";
 import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date";
+import { useStyles } from "./reportGeneratorStyles";
 
 const initValues: ReportGeneratorValues = {
   dataType: "",
@@ -42,6 +43,8 @@ export const ReportGenerator: React.SFC<{}> = props => {
   const [businessUnitIds, setBusinessUnitIds] = useState<string[]>([]);
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [endDate, setEndDate] = useState<Date>(new Date());
+
+  const classes = useStyles();
 
   const handleProjectChange = (left: string[], right: string[]) => {
     setProjectIds(right);
@@ -80,47 +83,43 @@ export const ReportGenerator: React.SFC<{}> = props => {
         }}
         render={({ submitForm }) => {
           return (
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr",
-                gridRowGap: "2em"
-              }}
-            >
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr",
-                  gridRowGap: "1em"
-                }}
-              >
-                <Typography>Select a Data Type</Typography>
+            <div className={classes.root}>
+              <div className={classes.titleContent}>
+                <Typography>Data Type</Typography>
                 <PickerDataType name="dataType" />
               </div>
-              <div>
-                <PickerKeyboardDate
-                  value={startDate}
-                  onChange={handleStartDateChange}
-                  label="Start (inclusive)"
-                />
-                <PickerKeyboardDate
-                  value={endDate}
-                  onChange={handleEndDateChange}
-                  label="End (inclusive)"
-                />
+              <div className={classes.titleContent}>
+                <Typography>Time Period</Typography>
+                <div className={classes.datePickers}>
+                  <PickerKeyboardDate
+                    value={startDate}
+                    onChange={handleStartDateChange}
+                    label="Start (inclusive)"
+                  />
+                  <PickerKeyboardDate
+                    value={endDate}
+                    onChange={handleEndDateChange}
+                    label="End (inclusive)"
+                  />
+                </div>
               </div>
-              <div>
-                <Typography>Select Business Units</Typography>
+              <div className={classes.titleContent}>
+                <Typography>Business Units</Typography>
                 <TransferListBusinessUnits
                   onChange={handleBusinessUnitChange}
                 />
               </div>
-              <div>
-                <Typography>Select Projects</Typography>
+              <div className={classes.titleContent}>
+                <Typography>Projects</Typography>
                 <TransferListProjects onChange={handleProjectChange} />
               </div>
-              <Button type="submit" onClick={submitForm}>
-                Generate
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                onClick={submitForm}
+              >
+                Generate Report
               </Button>
             </div>
           );
