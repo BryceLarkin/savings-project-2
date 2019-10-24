@@ -187,6 +187,9 @@ export interface NexusGenInputs {
     none?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
     some?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
   }
+  UserProjectsOrderByInput: { // input type
+    createdAt?: NexusGenEnums['OrderByArg'] | null; // OrderByArg
+  }
   UserWhereInput: { // input type
     AND?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
     company?: NexusGenInputs['CompanyWhereInput'] | null; // CompanyWhereInput
@@ -196,6 +199,9 @@ export interface NexusGenInputs {
     NOT?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
     OR?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
     projects?: NexusGenInputs['ProjectFilter'] | null; // ProjectFilter
+  }
+  UserWhereUniqueInput: { // input type
+    id?: string | null; // ID
   }
 }
 
@@ -260,7 +266,9 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   SpendWhereInput: NexusGenInputs['SpendWhereInput'];
   StringFilter: NexusGenInputs['StringFilter'];
   UserFilter: NexusGenInputs['UserFilter'];
+  UserProjectsOrderByInput: NexusGenInputs['UserProjectsOrderByInput'];
   UserWhereInput: NexusGenInputs['UserWhereInput'];
+  UserWhereUniqueInput: NexusGenInputs['UserWhereUniqueInput'];
   OrderByArg: NexusGenEnums['OrderByArg'];
   ReportDataType: NexusGenEnums['ReportDataType'];
 }
@@ -307,6 +315,7 @@ export interface NexusGenFieldTypes {
     project: NexusGenRootTypes['Project'] | null; // Project
     projects: NexusGenRootTypes['Project'][]; // [Project!]!
     reportTableData: NexusGenRootTypes['ReportTableData'][]; // [ReportTableData!]!
+    user: NexusGenRootTypes['User'] | null; // User
   }
   ReportTableData: { // field return type
     data: NexusGenRootTypes['ReportTableRowData'][]; // [ReportTableRowData!]!
@@ -427,6 +436,9 @@ export interface NexusGenArgTypes {
     reportTableData: { // args
       input: NexusGenInputs['ReportDataTableInput']; // ReportDataTableInput!
     }
+    user: { // args
+      where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+    }
   }
   User: {
     projects: { // args
@@ -434,6 +446,7 @@ export interface NexusGenArgTypes {
       before?: string | null; // String
       first?: number | null; // Int
       last?: number | null; // Int
+      orderBy?: NexusGenInputs['UserProjectsOrderByInput'] | null; // UserProjectsOrderByInput
       skip?: number | null; // Int
     }
   }
@@ -446,7 +459,7 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "BusinessUnit" | "Company" | "Mutation" | "Project" | "ProjectProfile" | "Query" | "ReportTableData" | "ReportTableRowData" | "Spend" | "User";
 
-export type NexusGenInputNames = "BusinessUnitFilter" | "BusinessUnitWhereInput" | "CompanyWhereInput" | "CreateProjectInput" | "CreateProjectProfileInput" | "CreateProjectProfilesInput" | "CreateSpendsInput" | "DateTimeFilter" | "IntFilter" | "NullableIntFilter" | "ProjectFilter" | "ProjectProfileFilter" | "ProjectProfileSpendOrderByInput" | "ProjectProfileWhereInput" | "ProjectProjectProfilesWhereInput" | "ProjectWhereInput" | "ProjectWhereUniqueInput" | "QueryBusinessunitsOrderByInput" | "QueryProjectsOrderByInput" | "QueryProjectsWhereInput" | "ReportDataTableInput" | "SpendAmountAndDateInput" | "SpendFilter" | "SpendWhereInput" | "StringFilter" | "UserFilter" | "UserWhereInput";
+export type NexusGenInputNames = "BusinessUnitFilter" | "BusinessUnitWhereInput" | "CompanyWhereInput" | "CreateProjectInput" | "CreateProjectProfileInput" | "CreateProjectProfilesInput" | "CreateSpendsInput" | "DateTimeFilter" | "IntFilter" | "NullableIntFilter" | "ProjectFilter" | "ProjectProfileFilter" | "ProjectProfileSpendOrderByInput" | "ProjectProfileWhereInput" | "ProjectProjectProfilesWhereInput" | "ProjectWhereInput" | "ProjectWhereUniqueInput" | "QueryBusinessunitsOrderByInput" | "QueryProjectsOrderByInput" | "QueryProjectsWhereInput" | "ReportDataTableInput" | "SpendAmountAndDateInput" | "SpendFilter" | "SpendWhereInput" | "StringFilter" | "UserFilter" | "UserProjectsOrderByInput" | "UserWhereInput" | "UserWhereUniqueInput";
 
 export type NexusGenEnumNames = "OrderByArg" | "ReportDataType";
 

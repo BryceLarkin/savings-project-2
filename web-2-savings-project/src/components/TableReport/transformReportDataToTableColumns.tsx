@@ -19,14 +19,11 @@ export const transformReportDataToTableColumns = (
     {
       title: "Project",
       field: "project",
-      render: (rowData: any) => {
-        console.log(rowData);
-        return (
-          <Link component={LinkProject(rowData.projectUrl)}>
-            {rowData.project}
-          </Link>
-        );
-      }
+      render: (rowData: any) => (
+        <Link component={LinkProject(rowData.projectUrl)}>
+          {rowData.project}
+        </Link>
+      )
     }
   ];
 

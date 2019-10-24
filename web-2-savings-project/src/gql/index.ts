@@ -6,3 +6,4 @@ export { READ_PROJECT } from "./readProject";
 export { READ_PICKER_PROJECTS } from "./readPickerProjects";
 export { READ_PICKER_BUSINESS_UNITS } from "./readPickerBusinessUnits";
 export { READ_REPORT_TABLE_DATA } from "./readReportTableData";
+export { READ_USER_PROJECTS } from "./readUserProjects";

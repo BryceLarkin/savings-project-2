@@ -52,6 +52,10 @@ export interface SpendAmountAndDateInput {
   actualSavings?: number | null;
 }
 
+export interface UserWhereUniqueInput {
+  id?: string | null;
+}
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================

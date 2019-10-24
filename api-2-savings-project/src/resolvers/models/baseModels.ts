@@ -6,7 +6,7 @@ export const User = objectType({
     t.model.id();
     t.model.firstName();
     t.model.lastName();
-    t.model.projects();
+    t.model.projects({ ordering: { createdAt: true } });
     t.model.company();
   }
 });

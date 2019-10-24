@@ -16,4 +16,5 @@ export { TransferList } from "./TransferList";
 export { TransferListProjects } from "./TransferListProjects";
 export { TransferListBusinessUnits } from "./TransferListBusinessUnits";
 export { PickerKeyboardDate } from "./PickerKeyboardDate";
+export { TableUserProjects } from "./TableUserProjects";
 export type TableReportInputs = TableReportInputs;

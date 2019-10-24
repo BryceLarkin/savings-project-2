@@ -6,6 +6,8 @@ import { ReadProject } from "../ReadProject";
 import { ReportGenerator } from "../ReportGenerator";
 import { makeStyles, createStyles } from "@material-ui/styles";
 import { ITheme } from "../../components/Theme";
+import { Test } from "../Test";
+import { UserProfile } from "../UserProfile";
 
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
@@ -36,6 +38,8 @@ export const Pages: React.FC<{}> = () => {
         <Route exact path={R.PROJECTS} component={ReadProjects} />
         <Route exact path={R.PROJECT} component={ReadProject} />
         <Route exact path={R.REPORT} component={ReportGenerator} />
+        <Route exact path={R.USER} component={UserProfile} />
+        <Route exact path="/test" component={Test} />
       </Switch>
     </main>
   );

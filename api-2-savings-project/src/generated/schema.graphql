@@ -182,6 +182,7 @@ type Query {
   project(where: ProjectWhereUniqueInput!): Project
   projects(after: String, before: String, first: Int, last: Int, orderBy: QueryProjectsOrderByInput, skip: Int, where: QueryProjectsWhereInput): [Project!]!
   reportTableData(input: ReportDataTableInput!): [ReportTableData!]!
+  user(where: UserWhereUniqueInput!): User
 }
 
 input QueryBusinessunitsOrderByInput {
@@ -285,13 +286,17 @@ type User {
   fullName: String!
   id: ID!
   lastName: String!
-  projects(after: String, before: String, first: Int, last: Int, skip: Int): [Project!]!
+  projects(after: String, before: String, first: Int, last: Int, orderBy: UserProjectsOrderByInput, skip: Int): [Project!]!
 }
 
 input UserFilter {
   every: UserWhereInput
   none: UserWhereInput
   some: UserWhereInput
+}
+
+input UserProjectsOrderByInput {
+  createdAt: OrderByArg
 }
 
 input UserWhereInput {
@@ -303,4 +308,8 @@ input UserWhereInput {
   NOT: [UserWhereInput!]
   OR: [UserWhereInput!]
   projects: ProjectFilter
+}
+
+input UserWhereUniqueInput {
+  id: ID
 }
