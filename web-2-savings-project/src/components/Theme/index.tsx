@@ -5,6 +5,7 @@ import { createMuiTheme, Theme } from "@material-ui/core/styles";
 // export { default as useLinkStyle } from "./linkStyle";
 // export { default as useAppBarLinkStyles } from "./appBarLinkStyle";
 export { useListStyle } from "./useListStyle";
+export { useFormStyle } from "./useFormStyle";
 // export { default as bottomNavigationStyle } from "./bottomNavigationStyle";
 
 export const theme = createMuiTheme({

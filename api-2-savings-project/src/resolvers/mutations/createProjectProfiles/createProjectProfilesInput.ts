@@ -10,7 +10,7 @@ export const CreateProjectProfileInput = inputObjectType({
 export const CreateProjectProfilesInput = inputObjectType({
   name: "CreateProjectProfilesInput",
   definition(t) {
-    t.string("projectId", { required: true });
+    t.string("projectUrl", { required: true });
     t.field("projectProfiles", {
       type: "CreateProjectProfileInput",
       required: true,

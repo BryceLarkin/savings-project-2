@@ -12,12 +12,12 @@ export const createProjectProfilesMutation = mutationField(
       })
     },
     resolve: async (parent, { input }, { photon }) => {
-      const { projectId, projectProfiles } = input;
+      const { projectUrl, projectProfiles } = input;
 
       const projectProfilePromises = projectProfiles.map(profile =>
         photon.projectProfiles.create({
           data: {
-            project: { connect: { id: projectId } },
+            project: { connect: { url: projectUrl } },
             businessUnit: { connect: { id: profile.businessUnitId } }
           }
         })

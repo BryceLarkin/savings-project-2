@@ -6,7 +6,7 @@ type BusinessUnit {
   company: Company!
   id: ID!
   name: String!
-  projectProfiles(after: String, before: String, first: Int, last: Int, skip: Int): [ProjectProfile!]!
+  projectProfiles(after: ID, before: ID, first: Int, last: Int, skip: Int): [ProjectProfile!]!
 }
 
 input BusinessUnitFilter {
@@ -26,11 +26,11 @@ input BusinessUnitWhereInput {
 }
 
 type Company {
-  businessUnits(after: String, before: String, first: Int, last: Int, skip: Int): [BusinessUnit!]!
+  businessUnits(after: ID, before: ID, first: Int, last: Int, skip: Int): [BusinessUnit!]!
   id: ID!
   name: String!
-  projects(after: String, before: String, first: Int, last: Int, skip: Int): [Project!]!
-  users(after: String, before: String, first: Int, last: Int, skip: Int): [User!]!
+  projects(after: ID, before: ID, first: Int, last: Int, skip: Int): [Project!]!
+  users(after: ID, before: ID, first: Int, last: Int, skip: Int): [User!]!
 }
 
 input CompanyWhereInput {
@@ -54,8 +54,8 @@ input CreateProjectProfileInput {
 }
 
 input CreateProjectProfilesInput {
-  projectId: String!
   projectProfiles: [CreateProjectProfileInput!]!
+  projectUrl: String!
 }
 
 input CreateSpendsInput {
@@ -115,7 +115,7 @@ type Project {
   id: ID!
   name: String!
   owner: User!
-  projectProfiles(after: String, before: String, first: Int, last: Int, skip: Int, where: ProjectProjectProfilesWhereInput): [ProjectProfile!]!
+  projectProfiles(after: ID, before: ID, first: Int, last: Int, skip: Int, where: ProjectProjectProfilesWhereInput): [ProjectProfile!]!
   totalBaselineSpend: Int!
   totalForecastedSavingAmount: Int!
   totalForecastedSavingPercentage: Int!
@@ -132,7 +132,7 @@ type ProjectProfile {
   businessUnit: BusinessUnit!
   id: ID!
   project: Project!
-  spend(after: String, before: String, first: Int, last: Int, orderBy: ProjectProfileSpendOrderByInput, skip: Int): [Spend!]!
+  spend(after: ID, before: ID, first: Int, last: Int, orderBy: ProjectProfileSpendOrderByInput, skip: Int): [Spend!]!
 }
 
 input ProjectProfileFilter {
@@ -178,15 +178,21 @@ input ProjectWhereUniqueInput {
 }
 
 type Query {
-  businessunits(after: String, before: String, first: Int, last: Int, orderBy: QueryBusinessunitsOrderByInput, skip: Int): [BusinessUnit!]!
+  businessUnits(after: ID, before: ID, first: Int, last: Int, orderBy: QueryBusinessUnitsOrderByInput, skip: Int): [BusinessUnit!]!
   project(where: ProjectWhereUniqueInput!): Project
-  projects(after: String, before: String, first: Int, last: Int, orderBy: QueryProjectsOrderByInput, skip: Int, where: QueryProjectsWhereInput): [Project!]!
+  projectProfiles(after: ID, before: ID, first: Int, last: Int, skip: Int, where: QueryProjectProfilesWhereInput): [ProjectProfile!]!
+  projects(after: ID, before: ID, first: Int, last: Int, orderBy: QueryProjectsOrderByInput, skip: Int, where: QueryProjectsWhereInput): [Project!]!
   reportTableData(input: ReportDataTableInput!): [ReportTableData!]!
   user(where: UserWhereUniqueInput!): User
+  users(after: ID, before: ID, first: Int, last: Int, skip: Int): [User!]!
 }
 
-input QueryBusinessunitsOrderByInput {
+input QueryBusinessUnitsOrderByInput {
   name: OrderByArg
+}
+
+input QueryProjectProfilesWhereInput {
+  project: ProjectWhereInput
 }
 
 input QueryProjectsOrderByInput {
@@ -244,6 +250,8 @@ input SpendAmountAndDateInput {
   actualSavings: Int
   baselineSpend: Int!
   forecastedSavings: Int!
+
+  """dateString format"""
   month: String!
 }
 
@@ -286,7 +294,7 @@ type User {
   fullName: String!
   id: ID!
   lastName: String!
-  projects(after: String, before: String, first: Int, last: Int, orderBy: UserProjectsOrderByInput, skip: Int): [Project!]!
+  projects(after: ID, before: ID, first: Int, last: Int, orderBy: UserProjectsOrderByInput, skip: Int): [Project!]!
 }
 
 input UserFilter {

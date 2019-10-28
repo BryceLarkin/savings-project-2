@@ -1,27 +1,15 @@
 import React from "react";
 import { ReadProject } from "../../gql/__generated__/ReadProject";
-import { Typography, Paper, makeStyles, createStyles } from "@material-ui/core";
-import { useListStyle, ITheme } from "../../components/Theme";
+import { Link } from "@material-ui/core";
+import { useListStyle } from "../../components/Theme";
 import { Currency } from "../../components/FormatText/Currency";
 import { TableProjectProfile } from "./TableProjectProfile";
-import { Percentage } from "../../components";
-
-const useStyles = makeStyles((theme: ITheme) =>
-  createStyles({
-    paper: {
-      display: "grid",
-      gridTemplateColumns: "1fr",
-      gridRowGap: "1em",
-      padding: theme.spacing(3, 2)
-    }
-  })
-);
+import { Percentage, LinkUser, Typography, Paper } from "../../components";
 
 export const TableProject: React.FC<{
   data: ReadProject | undefined;
 }> = ({ data }) => {
-  const classes = useStyles();
-  const list = useListStyle();
+  const classes = useListStyle();
 
   if (!data || data.project === null) {
     return <Typography>No Project</Typography>;
@@ -39,34 +27,32 @@ export const TableProject: React.FC<{
   } = data;
 
   return (
-    <div className={list.root}>
+    <div className={classes.root}>
       <Typography variant="h4">{name}</Typography>
-      <Paper className={classes.paper}>
-        <Typography align="center" variant="h5">
-          Details
-        </Typography>
-        <div className={list.dataRow}>
+      <Paper>
+        <Typography variant="h6">Details</Typography>
+        <div className={classes.dataRow}>
           <Typography>Owner</Typography>
-          <Typography>{owner.fullName}</Typography>
+          <Link component={LinkUser(owner.id)}>{owner.fullName}</Link>{" "}
         </div>
-        <div className={list.titleRow}>
+        <div className={classes.titleRow}>
           <Typography>Total</Typography>
         </div>
-        <div className={list.dataRow}>
+        <div className={classes.dataRow}>
           <Typography>Forecasted Savings Amount</Typography>
           <Currency data={totalForecastedSavingAmount} />
         </div>
-        <div className={list.dataRow}>
+        <div className={classes.dataRow}>
           <Typography>Forecasted Savings Percentage</Typography>
           <Percentage data={totalForecastedSavingPercentage} />
         </div>
-        <div className={list.dataRow}>
+        <div className={classes.dataRow}>
           <Typography>Baseline Spend Amount</Typography>
           <Currency data={totalBaselineSpend} />
         </div>
       </Paper>
       {projectProfiles.map(profile => (
-        <div key={profile.id} className={list.childRoot}>
+        <div key={profile.id} className={classes.childRoot}>
           <TableProjectProfile profile={profile} />
         </div>
       ))}

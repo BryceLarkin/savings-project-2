@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import MaterialTable from "material-table";
 import { useQuery } from "@apollo/react-hooks";
 import { format } from "date-fns";
@@ -16,16 +16,22 @@ import { transformReportDataToTableColumns } from "./transformReportDataToTableC
 import { transformReportDataToTableData } from "./transformReportDataToTableData";
 import { reportDataTypeMap } from "../../constants";
 
-export interface TableReportInputs {
+interface TableReportInputs {
   dataType: ReportDataType;
   businessUnitIds: string[];
   projectIds: string[];
+}
+
+export interface RowData {
+  [key: string]: string | number;
 }
 
 export const TableReport: React.FC<{ input: ReportDataTableInput }> = ({
   input
 }) => {
   // const { dataType, businessUnitIds, projectIds } = input;
+  const [tableData, setTableData] = useState<RowData[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { data, loading, error } = useQuery<
     ReadReportTableData,
@@ -33,6 +39,13 @@ export const TableReport: React.FC<{ input: ReportDataTableInput }> = ({
   >(READ_REPORT_TABLE_DATA, {
     variables: {
       input
+    },
+    onCompleted: data => {
+      const transformedData = transformReportDataToTableData(
+        data.reportTableData
+      );
+      setTableData(transformedData);
+      setIsLoading(false);
     }
   });
 
@@ -49,10 +62,10 @@ export const TableReport: React.FC<{ input: ReportDataTableInput }> = ({
   // Todo: Format for percentage is incorrect
   return (
     <MaterialTable
-      isLoading={loading}
+      isLoading={isLoading}
       columns={transformReportDataToTableColumns(data.reportTableData)}
-      data={transformReportDataToTableData(data.reportTableData)}
-      title={`${dataType}. ${start} - ${end}`}
+      data={tableData}
+      title={`${dataType} ${start} - ${end}`}
       options={{
         exportButton: true
       }}

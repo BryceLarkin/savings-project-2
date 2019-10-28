@@ -1,0 +1,1 @@
+export { BtnSubmit } from "./BtnSubmit";

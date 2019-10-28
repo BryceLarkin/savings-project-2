@@ -6,12 +6,12 @@
 // GraphQL query operation: ReadPickerBusinessUnits
 // ====================================================
 
-export interface ReadPickerBusinessUnits_businessunits {
+export interface ReadPickerBusinessUnits_businessUnits {
   __typename: "BusinessUnit";
   id: string;
   name: string;
 }
 
 export interface ReadPickerBusinessUnits {
-  businessunits: ReadPickerBusinessUnits_businessunits[];
+  businessUnits: ReadPickerBusinessUnits_businessUnits[];
 }

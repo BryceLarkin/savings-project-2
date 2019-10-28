@@ -7,3 +7,5 @@ export { READ_PICKER_PROJECTS } from "./readPickerProjects";
 export { READ_PICKER_BUSINESS_UNITS } from "./readPickerBusinessUnits";
 export { READ_REPORT_TABLE_DATA } from "./readReportTableData";
 export { READ_USER_PROJECTS } from "./readUserProjects";
+export { READ_USERS_NAME } from "./readUsersName";
+export { READ_PROJECT_PROFILE_NAMES } from "./readProjectProfileNames";

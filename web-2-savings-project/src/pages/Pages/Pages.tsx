@@ -4,10 +4,11 @@ import { R } from "../../constants";
 import { ReadProjects } from "../ReadProjects";
 import { ReadProject } from "../ReadProject";
 import { ReportGenerator } from "../ReportGenerator";
-import { makeStyles, createStyles } from "@material-ui/styles";
+import { makeStyles, createStyles } from "@material-ui/core";
 import { ITheme } from "../../components/Theme";
-import { Test } from "../Test";
+// import { Test } from "../Test";
 import { UserProfile } from "../UserProfile";
+import { AppBar, FormCreateProject } from "../../components";
 
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
@@ -26,21 +27,29 @@ const useStyles = makeStyles((theme: ITheme) =>
       [theme.breakpoints.down("sm")]: {
         paddingBottom: 60
       }
-    }
+    },
+    toolbar: theme.mixins.toolbar
   })
 );
 
 export const Pages: React.FC<{}> = () => {
   const classes = useStyles();
   return (
-    <main className={classes.main}>
-      <Switch>
-        <Route exact path={R.PROJECTS} component={ReadProjects} />
-        <Route exact path={R.PROJECT} component={ReadProject} />
-        <Route exact path={R.REPORT} component={ReportGenerator} />
-        <Route exact path={R.USER} component={UserProfile} />
-        <Route exact path="/test" component={Test} />
-      </Switch>
-    </main>
+    <>
+      <AppBar />
+      <main className={classes.main}>
+        <div className={classes.toolbar} />
+        <Switch>
+          <Route
+            path={R.NEW}
+            render={props => <FormCreateProject {...props} rootPath={R.NEW} />}
+          />
+          <Route exact path={R.PROJECTS} component={ReadProjects} />
+          <Route exact path={R.PROJECT} component={ReadProject} />
+          <Route exact path={R.REPORT} component={ReportGenerator} />
+          <Route exact path={R.USER} component={UserProfile} />
+        </Switch>
+      </main>
+    </>
   );
 };

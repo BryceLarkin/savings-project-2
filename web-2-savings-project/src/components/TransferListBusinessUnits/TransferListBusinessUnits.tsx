@@ -15,15 +15,15 @@ export const TransferListBusinessUnits: React.FC<{
   const { loading } = useQuery<ReadPickerBusinessUnits>(
     READ_PICKER_BUSINESS_UNITS,
     {
-      onCompleted: ({ businessunits }) => {
-        const idMap = businessunits.reduce(
+      onCompleted: ({ businessUnits }) => {
+        const idMap = businessUnits.reduce(
           (acc, cur) => ({
             ...acc,
             [cur.id]: cur.name
           }),
           {}
         );
-        const businessUnitsIds = businessunits.map(({ id }) => id);
+        const businessUnitsIds = businessUnits.map(({ id }) => id);
         setIdToNameMap(idMap);
         setInitBusinessUnits(businessUnitsIds);
       }

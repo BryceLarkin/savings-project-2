@@ -3,8 +3,8 @@ import gql from "graphql-tag";
 export const READ_TABLE_PROJECTS = gql`
   query ReadTableProjects(
     $skip: Int
-    $after: String
-    $before: String
+    $after: ID
+    $before: ID
     $first: Int
     $last: Int
   ) {

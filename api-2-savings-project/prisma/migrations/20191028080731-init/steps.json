@@ -464,7 +464,17 @@
     {
       "stepType": "CreateField",
       "model": "Spend",
-      "name": "forecastedSavings",
+      "name": "forecastedSavingsAmount",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Spend",
+      "name": "forecastedSavingsPercentage",
       "type": {
         "Base": "Int"
       },

@@ -10,7 +10,7 @@ const columns: Column<ReadProject_project_projectProfiles_spend>[] = [
   {
     field: "month",
     title: "Date",
-    render: row => `${dayjs(row.month).format("MMM YYYY")}`,
+    render: row => dayjs(row.month).format("MMM YYYY"),
     type: "date"
   },
   {

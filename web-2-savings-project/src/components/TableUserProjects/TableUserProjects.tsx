@@ -6,6 +6,7 @@ import {
   ReadUserProjects_user_projects,
   ReadUserProjects_user
 } from "../../gql/__generated__/ReadUserProjects";
+import dayjs from "dayjs";
 
 const columns: Column<ReadUserProjects_user_projects>[] = [
   {
@@ -28,6 +29,7 @@ const columns: Column<ReadUserProjects_user_projects>[] = [
   {
     field: "createdAt",
     title: "Created At",
+    render: row => dayjs(row.createdAt).format("MMM YYYY"),
     type: "date"
   }
 ];
@@ -40,6 +42,9 @@ export const TableUserProjects: React.SFC<{ user: ReadUserProjects_user }> = ({
       title={`${user.fullName} Projects`}
       columns={columns}
       data={user.projects}
+      options={{
+        paging: false
+      }}
     />
   );
 };

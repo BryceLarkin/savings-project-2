@@ -23,7 +23,7 @@ const photon = new Photon({ debug: false });
 const createClient = (opts?: ICreateClient) => {
   validateEnvVars(process.env);
 
-  let companyId = seedId.companyId;
+  const companyId = seedId.companyId;
 
   let storage = new Storage();
   let auth = new Auth();
