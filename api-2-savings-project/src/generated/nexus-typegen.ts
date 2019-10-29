@@ -165,7 +165,6 @@ export interface NexusGenInputs {
     AND?: NexusGenInputs['SpendWhereInput'][] | null; // [SpendWhereInput!]
     baselineSpend?: NexusGenInputs['IntFilter'] | null; // IntFilter
     forecastedSavingsAmount?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    forecastedSavingsPercentage?: NexusGenInputs['IntFilter'] | null; // IntFilter
     id?: NexusGenInputs['StringFilter'] | null; // StringFilter
     month?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     NOT?: NexusGenInputs['SpendWhereInput'][] | null; // [SpendWhereInput!]

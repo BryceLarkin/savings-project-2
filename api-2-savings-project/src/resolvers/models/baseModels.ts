@@ -64,7 +64,7 @@ export const Spend = objectType({
     t.model.month();
     t.model.baselineSpend();
     t.model.forecastedSavingsAmount();
-    t.model.forecastedSavingsPercentage();
+    // t.model.forecastedSavingsPercentage();
     // t.model.forecastedSavings();
     t.model.actualSavings();
     t.model.projectProfile();

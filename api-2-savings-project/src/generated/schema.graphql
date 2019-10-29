@@ -266,7 +266,6 @@ input SpendWhereInput {
   AND: [SpendWhereInput!]
   baselineSpend: IntFilter
   forecastedSavingsAmount: IntFilter
-  forecastedSavingsPercentage: IntFilter
   id: StringFilter
   month: DateTimeFilter
   NOT: [SpendWhereInput!]

@@ -48,11 +48,10 @@ model ProjectProfile {
 }
 
 model Spend {
-  id                          String         @default(cuid()) @id
-  month                       DateTime
-  baselineSpend               Int
-  forecastedSavingsAmount     Int
-  forecastedSavingsPercentage Int
-  actualSavings               Int?
-  projectProfile              ProjectProfile
+  id                      String         @default(cuid()) @id
+  month                   DateTime
+  baselineSpend           Int
+  forecastedSavingsAmount Int
+  actualSavings           Int?
+  projectProfile          ProjectProfile
 }

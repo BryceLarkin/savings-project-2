@@ -29,13 +29,13 @@ describe("createSpendsMutation", () => {
         projectProfileId: projectProfile1.id,
         spendAmountsAndDates: [
           {
-            month: "1602520000000",
+            month: new Date(1602520000000).toISOString(),
             baselineSpend: 40000,
             forecastedSavings: 5000,
             actualSavings: 4500
           },
           {
-            month: "1602720000000",
+            month: new Date(1602720000000).toISOString(),
             baselineSpend: 50000,
             forecastedSavings: 5000,
             actualSavings: 4500
@@ -46,13 +46,13 @@ describe("createSpendsMutation", () => {
         projectProfileId: projectProfile2.id,
         spendAmountsAndDates: [
           {
-            month: "1602520000000",
+            month: new Date(1602520000000).toISOString(),
             baselineSpend: 60000,
             forecastedSavings: 5000,
             actualSavings: 4500
           },
           {
-            month: "1602720000000",
+            month: new Date(1602720000000).toISOString(),
             baselineSpend: 70000,
             forecastedSavings: 5000,
             actualSavings: 4500
@@ -61,10 +61,12 @@ describe("createSpendsMutation", () => {
       }
     ];
 
-    await mutate({
+    const { errors } = await mutate({
       mutation: gql.CREATE_SPENDS,
       variables: { input }
     });
+    console.error(errors);
+    assert.isUndefined(errors);
 
     const projectProfile1SpendsPromise = photon.spends.findMany({
       where: { projectProfile: { id: projectProfile1.id } }

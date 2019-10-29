@@ -37,7 +37,9 @@ export const TextFieldCurrency: React.FC<{ name: string; label: string }> = ({
   const { setFieldValue } = useFormikContext<any>();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFieldValue(name, event.target.value);
+    const value = parseInt(event.target.value, 10);
+    const checkedValue = Number.isNaN(value) ? 0 : value;
+    setFieldValue(name, checkedValue);
   };
 
   return (
@@ -50,6 +52,9 @@ export const TextFieldCurrency: React.FC<{ name: string; label: string }> = ({
       helperText={!!meta.error ? meta.error : ""}
       InputProps={{
         inputComponent: NumberFormatCustom as any
+      }}
+      inputProps={{
+        style: { textAlign: "right" }
       }}
     />
   );

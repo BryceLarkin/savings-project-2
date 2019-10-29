@@ -12,7 +12,7 @@ describe("createProjectProfilesMutation", () => {
     });
 
     const input: CreateProjectProfilesInput = {
-      projectId: project.id,
+      projectUrl: project.url,
       projectProfiles: [
         { businessUnitId: seedId.businessUnitId1 },
         { businessUnitId: seedId.businessUnitId2 }
@@ -25,6 +25,7 @@ describe("createProjectProfilesMutation", () => {
     });
 
     assert.isUndefined(errors);
+    assert.isNotNull(data);
 
     const profiles = data.createProjectProfiles;
 

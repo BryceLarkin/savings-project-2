@@ -14,7 +14,7 @@ export const createSpendsMutation = mutationField("createSpends", {
   resolve: async (parent, { input }, { photon }) => {
     const spendPromises = input
       .map(s => createSpendsForProjectProfile(photon, s))
-      .flatten();
+      .flat();
 
     await Promise.all(spendPromises);
 

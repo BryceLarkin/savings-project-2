@@ -7,7 +7,7 @@ export { seedId };
 
 const p = new Photon({ debug: false });
 
-const main = async () => {
+const main = async (): Promise<void> => {
   await p.companies.create({ data: d.apple });
 
   await p.users.create({ data: d.user });

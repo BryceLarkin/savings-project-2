@@ -1,4 +1,7 @@
-export const calculatePercentage = (numerator: number, denominator: number) => {
+export const calculatePercentage = (
+  numerator: number,
+  denominator: number
+): number => {
   const percentage = Math.round((numerator / denominator) * 100);
 
   if (Number.isInteger(percentage)) {

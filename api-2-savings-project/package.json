@@ -6,7 +6,7 @@
     "seed:add": "ts-node prisma/seed/seedProjects.ts",
     "seed:firebase": "ts-node prisma/seed/seedFirebase.ts",
     "test": "ts-mocha -r dotenv/config -p tsconfig.json --watch-extensions ts --timeout 60000 -w src/**/*.test.ts",
-    "get-types": "graphql-codegen",
+    "update-types": "graphql-codegen",
     "test:no-network": "ts-mocha -r dotenv/config -p tsconfig.json --watch-extensions ts --timeout 3000 --grep /network/i --invert -w src/**/*.test.ts",
     "postinstall": "run-s prisma:generate",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",

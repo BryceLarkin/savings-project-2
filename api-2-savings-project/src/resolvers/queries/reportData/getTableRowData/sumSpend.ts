@@ -1,17 +1,15 @@
 import { Spend } from "@generated/photon";
-import { ReportDataType } from "../../../../graphql-types";
-import { UnreachableCaseError } from "../../../helpers";
+import { UnreachableCaseError, calculatePercentage } from "../../../helpers";
 import { NexusGenEnums } from "../../../../generated/nexus-typegen";
 
 const getSpendType = (
   dataType: NexusGenEnums["ReportDataType"]
-): keyof Pick<
-  Spend,
-  | "actualSavings"
-  | "baselineSpend"
-  | "forecastedSavingsAmount"
-  | "forecastedSavingsPercentage"
-> => {
+):
+  | keyof Pick<
+      Spend,
+      "actualSavings" | "baselineSpend" | "forecastedSavingsAmount"
+    >
+  | "forecastedSavingsPercentage" => {
   switch (dataType) {
     case "ActualSavings":
       return "actualSavings";
@@ -34,13 +32,19 @@ export const sumSpend = (
   const spendType = getSpendType(dataType);
 
   return spend.reduce((acc, curSpend) => {
-    const curAmount = curSpend[spendType];
-
-    if (typeof curAmount !== "number") {
-      return acc;
+    let curAmount: number;
+    if (spendType === "forecastedSavingsPercentage") {
+      curAmount = calculatePercentage(
+        curSpend.forecastedSavingsAmount,
+        curSpend.baselineSpend
+      );
+    } else if (spendType === "actualSavings") {
+      curAmount = curSpend.actualSavings === null ? 0 : curSpend.actualSavings;
     } else {
-      return curAmount + acc;
+      curAmount = curSpend[spendType];
     }
+
+    return curAmount + acc;
   }, initAmount);
 };
 
