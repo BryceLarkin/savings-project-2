@@ -19,17 +19,20 @@ import {
   Typography,
   makeStyles,
   createStyles,
-  Button,
+  IconButton,
   Divider
 } from "@material-ui/core";
+import { Add, Remove } from "@material-ui/icons";
 import { CreateSpendsInput } from "../../../gql/__generated__/graphql-global-types";
 import { Paper } from "../../Paper";
 import { TextFieldCurrency } from "../../FormFields";
 import { PickerMonth } from "../../PickerMonth";
 import { Currency } from "../../FormatText";
 
-const useStyles = makeStyles((theme: ITheme) =>
-  createStyles({
+const useStyles = makeStyles((theme: ITheme) => {
+  const inputRowCol = "150px repeat(2, minmax(100px, 150px)) repeat(2, 56px)";
+
+  return createStyles({
     root: {
       display: "grid",
       gridRowGap: "2em"
@@ -43,17 +46,17 @@ const useStyles = makeStyles((theme: ITheme) =>
     },
     spendInputsRow: {
       display: "grid",
-      gridTemplateColumns: "repeat(3, minmax(200px, 250px)) repeat(2, 64px)",
+      gridTemplateColumns: inputRowCol,
       gridColumnGap: "1em"
     },
     divider: {
       paddingTop: "1em",
       display: "grid",
-      gridTemplateColumns: "repeat(3, minmax(200px, 250px)) repeat(2, 64px)",
+      gridTemplateColumns: inputRowCol,
       gridColumnGap: "1em"
     }
-  })
-);
+  });
+});
 
 export const FormCreateSpends: React.FC<{}> = props => {
   const { projectUrl } = useParams<R.PROFILES_PARAMS>();
@@ -128,29 +131,35 @@ export const FormCreateSpends: React.FC<{}> = props => {
                                 <PickerMonth
                                   name={`input.${i}.spendAmountsAndDates.${spendIndex}.month`}
                                   label="Month"
+                                  dataCy={`month-${i}-${spendIndex}`}
                                 />
                                 <TextFieldCurrency
                                   name={`input.${i}.spendAmountsAndDates.${spendIndex}.baselineSpend`}
                                   label="Baseline Spend"
+                                  dataCy={`baseline-${i}-${spendIndex}`}
                                 />
                                 <TextFieldCurrency
                                   name={`input.${i}.spendAmountsAndDates.${spendIndex}.forecastedSavings`}
                                   label="Forecasted Savings"
+                                  dataCy={`forecasted-${i}-${spendIndex}`}
                                 />
-                                <Button
+                                <IconButton
                                   onClick={() =>
                                     arrayHelpers.remove(spendIndex)
                                   }
+                                  disabled={spend.length === 1}
+                                  data-cy={`remove-${i}-${spendIndex}`}
                                 >
-                                  -
-                                </Button>
-                                <Button
+                                  <Remove />
+                                </IconButton>
+                                <IconButton
                                   onClick={() =>
                                     arrayHelpers.push(initSpendAmountsAndDates)
                                   }
+                                  data-cy={`add-${i}-${spendIndex}`}
                                 >
-                                  +
-                                </Button>
+                                  <Add />
+                                </IconButton>
                               </div>
                             ))}
                           </div>
@@ -161,8 +170,14 @@ export const FormCreateSpends: React.FC<{}> = props => {
                           </div>
                           <div className={classes.divider}>
                             <div />
-                            <Currency data={totalBaseline} />
-                            <Currency data={totalForecastedSavings} />
+                            <Currency
+                              data={totalBaseline}
+                              dataCy={`total-baseline-${i}`}
+                            />
+                            <Currency
+                              data={totalForecastedSavings}
+                              dataCy={`total-savings-${i}`}
+                            />
                           </div>
                         </div>
                       ) : (

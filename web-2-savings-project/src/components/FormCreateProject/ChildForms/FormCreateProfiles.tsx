@@ -68,17 +68,23 @@ export const FormCreateProfiles: React.FC<{
                     <div className={classes.root}>
                       {values.projectProfiles.map((profile, i) => (
                         <div key={i} className={classes.root}>
-                          <div>
+                          <div
+                            style={{ display: "flex", alignItems: "center" }}
+                          >
                             <PickerBusinessUnits
                               name={`projectProfiles.${i}.businessUnitId`}
                             />
-                            <Button onClick={() => arrayHelpers.remove(i)}>
+                            <Button
+                              onClick={() => arrayHelpers.remove(i)}
+                              data-cy="remove-business-unit-icon"
+                            >
                               -
                             </Button>
                             <Button
                               onClick={() =>
                                 arrayHelpers.push({ businessUnitId: "" })
                               }
+                              data-cy="add-business-unit-icon"
                             >
                               +
                             </Button>
@@ -96,6 +102,7 @@ export const FormCreateProfiles: React.FC<{
                     <Button
                       variant="outlined"
                       onClick={() => arrayHelpers.push({ businessUnitId: "" })}
+                      data-cy="add-business-unit-btn"
                     >
                       Add a Business Unit
                     </Button>

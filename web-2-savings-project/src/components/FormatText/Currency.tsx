@@ -10,7 +10,13 @@ export const Currency: React.SFC<{
   data: number;
   includeCents?: boolean;
   denomination?: Denomination;
-}> = ({ data, includeCents = false, denomination = {} }) => {
+  dataCy?: string;
+}> = ({
+  data,
+  includeCents = false,
+  denomination = {},
+  dataCy = "currency"
+}) => {
   const { locale = "en-US", currency = "USD" } = denomination;
 
   let options: Intl.NumberFormatOptions = {
@@ -28,5 +34,9 @@ export const Currency: React.SFC<{
 
   const formatedCurrency = new Intl.NumberFormat(locale, options).format(data);
 
-  return <Typography align="right">{formatedCurrency}</Typography>;
+  return (
+    <Typography align="right" data-cy={dataCy}>
+      {formatedCurrency}
+    </Typography>
+  );
 };

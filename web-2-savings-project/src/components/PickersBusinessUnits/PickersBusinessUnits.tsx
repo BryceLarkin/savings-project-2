@@ -1,7 +1,8 @@
 import React from "react";
 import { PickerBusinessUnits } from "../PickerBusinessUnits";
 import { FieldArray, useField } from "formik";
-import { Button, Paper } from "@material-ui/core";
+import { Button, Paper, IconButton } from "@material-ui/core";
+import { Add, Remove } from "@material-ui/icons";
 
 export const PickersBusinessUnits: React.FC<{}> = props => {
   const [field] = useField("businessUnitIds");
@@ -18,12 +19,25 @@ export const PickersBusinessUnits: React.FC<{}> = props => {
               businessUnitIds.map((projectId, i) => (
                 <div key={i}>
                   <PickerBusinessUnits name={`businessUnitIds.${i}`} />
-                  <Button onClick={() => arrayHelpers.remove(i)}>-</Button>
-                  <Button onClick={() => arrayHelpers.push("")}>+</Button>
+                  <IconButton
+                    onClick={() => arrayHelpers.remove(i)}
+                    data-cy="remove-business-unit-icon"
+                  >
+                    <Remove />
+                  </IconButton>
+                  <Button
+                    data-cy="add-business-unit-icon"
+                    onClick={() => arrayHelpers.push("")}
+                  >
+                    +
+                  </Button>
                 </div>
               ))
             ) : (
-              <Button onClick={() => arrayHelpers.push("")}>
+              <Button
+                onClick={() => arrayHelpers.push("")}
+                data-cy="add-business-unit-btn"
+              >
                 Add Business Units
               </Button>
             )}

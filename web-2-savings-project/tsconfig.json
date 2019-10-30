@@ -13,7 +13,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react",
-    "types": ["cypress"]
+    "types": ["cypress"],
+    "noEmit": true
   },
   "include": ["src"]
 }

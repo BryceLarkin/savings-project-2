@@ -29,10 +29,11 @@ function NumberFormatCustom(props: NumberFormatCustomProps) {
   );
 }
 
-export const TextFieldCurrency: React.FC<{ name: string; label: string }> = ({
-  name,
-  label
-}) => {
+export const TextFieldCurrency: React.FC<{
+  name: string;
+  label: string;
+  dataCy?: string;
+}> = ({ name, label, dataCy = "text-field-currency" }) => {
   const [field, meta] = useField(name);
   const { setFieldValue } = useFormikContext<any>();
 
@@ -56,6 +57,7 @@ export const TextFieldCurrency: React.FC<{ name: string; label: string }> = ({
       inputProps={{
         style: { textAlign: "right" }
       }}
+      data-cy={dataCy}
     />
   );
 };
