@@ -5,6 +5,10 @@ export const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
     root: {
       display: "grid",
+      gridRowGap: "2em"
+    },
+    form: {
+      display: "grid",
       gridTemplateColumns: "1fr",
       gridRowGap: "3em"
     },

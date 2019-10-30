@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
@@ -10,6 +10,7 @@ import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
+import { useField, useFormikContext } from "formik";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -39,22 +40,18 @@ function intersection(a: string[], b: string[]) {
 }
 
 interface TransferListProps<T> {
-  onChange: (left: string[], right: string[]) => void;
   initLeftIds: string[];
-  initRightIds: string[];
   idToNameMap: any;
+  name: string;
 }
 
 export function TransferList<T>(props: TransferListProps<T>): JSX.Element {
-  const { onChange, initLeftIds, initRightIds, idToNameMap } = props;
+  const { initLeftIds, idToNameMap, name } = props;
   const classes = useStyles();
   const [checked, setChecked] = useState<string[]>([]);
   const [left, setLeft] = useState<string[]>(initLeftIds);
-  const [right, setRight] = useState<string[]>(initRightIds);
-
-  useEffect(() => {
-    onChange(left, right);
-  }, [onChange, left, right]);
+  const [{ value: right }] = useField<string[]>(name);
+  const { setFieldValue } = useFormikContext<any>();
 
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
@@ -73,25 +70,25 @@ export function TransferList<T>(props: TransferListProps<T>): JSX.Element {
   };
 
   const handleAllRight = () => {
-    setRight(right.concat(left));
+    setFieldValue(name, right.concat(left));
     setLeft([]);
   };
 
   const handleCheckedRight = () => {
-    setRight(right.concat(leftChecked));
+    setFieldValue(name, right.concat(leftChecked));
     setLeft(not(left, leftChecked));
     setChecked(not(checked, leftChecked));
   };
 
   const handleCheckedLeft = () => {
     setLeft(left.concat(rightChecked));
-    setRight(not(right, rightChecked));
+    setFieldValue(name, not(right, rightChecked));
     setChecked(not(checked, rightChecked));
   };
 
   const handleAllLeft = () => {
     setLeft(left.concat(right));
-    setRight([]);
+    setFieldValue(name, []);
   };
 
   const customList = (title: string, items: string[]) => (

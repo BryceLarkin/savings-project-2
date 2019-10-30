@@ -7,20 +7,11 @@ import {
   ReadReportTableData,
   ReadReportTableDataVariables
 } from "../../gql/__generated__/ReadReportTableData";
-import {
-  ReportDataType,
-  ReportDataTableInput
-} from "../../gql/__generated__/graphql-global-types";
+import { ReportDataTableInput } from "../../gql/__generated__/graphql-global-types";
 import { Loading } from "../Loading";
 import { transformReportDataToTableColumns } from "./transformReportDataToTableColumns";
 import { transformReportDataToTableData } from "./transformReportDataToTableData";
 import { reportDataTypeMap } from "../../constants";
-
-interface TableReportInputs {
-  dataType: ReportDataType;
-  businessUnitIds: string[];
-  projectIds: string[];
-}
 
 export interface RowData {
   [key: string]: string | number;
@@ -73,11 +64,4 @@ export const TableReport: React.FC<{ input: ReportDataTableInput }> = ({
   );
 };
 
-const formatDate = (time: string) =>
-  format(new Date(parseInt(time, 10)), "MM/yyyy");
-
-// projectIds: string[];
-// businessUnitIds: string[];
-// dataType: ReportDataType;
-// startPeriod: string;
-// endPeriod: string;
+const formatDate = (date: string) => format(new Date(date), "MM/yyyy");

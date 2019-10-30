@@ -7,8 +7,8 @@ import { Loading } from "../Loading";
 import { Typography } from "@material-ui/core";
 
 export const TransferListProjects: React.FC<{
-  onChange: (left: string[], right: string[]) => void;
-}> = ({ onChange }) => {
+  name: string;
+}> = ({ name }) => {
   const [initProjects, setInitProjects] = useState<string[]>([]);
   const [idToNameMap, setIdToNameMap] = useState();
 
@@ -35,9 +35,8 @@ export const TransferListProjects: React.FC<{
   return (
     <TransferList
       initLeftIds={initProjects}
-      initRightIds={[]}
       idToNameMap={idToNameMap}
-      onChange={onChange}
+      name={name}
     />
   );
 };

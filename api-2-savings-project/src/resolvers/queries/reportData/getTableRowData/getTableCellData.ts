@@ -62,11 +62,7 @@ export const getTableCellData = async (
 
   const { spend } = projectProfiles[0];
 
-  const dateFilteredSpend = filterSpendByDate(
-    spend,
-    parseInt(startPeriod, 10),
-    parseInt(endPeriod, 10)
-  );
+  const dateFilteredSpend = filterSpendByDate(spend, startPeriod, endPeriod);
 
   const amount = sumSpend(dateFilteredSpend, dataType);
 

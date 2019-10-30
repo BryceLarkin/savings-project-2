@@ -1,6 +1,6 @@
 import React from "react";
-import { Field, useField } from "formik";
-import { TextField } from "formik-material-ui";
+import { useField, useFormikContext } from "formik";
+import { TextField } from "@material-ui/core";
 import { TextFieldProps } from "./textFieldProps";
 
 interface SelectProps extends TextFieldProps {
@@ -17,22 +17,30 @@ export const Select: React.FC<SelectProps> = ({
   multiple = false,
   ...rest
 }) => {
-  const [field] = useField(name);
+  const [field, meta] = useField<string>(name);
+  const { setFieldValue } = useFormikContext<any>();
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFieldValue(name, event.target.value);
+  };
 
   return (
-    <Field
-      name={name}
+    <TextField
       label={label}
       data-cy={dataCy}
-      component={TextField}
       style={{ width }}
       value={field.value}
-      multiple
+      SelectProps={{
+        multiple
+      }}
+      onChange={handleChange}
+      error={!!meta.error}
+      helperText={meta.error ? meta.error : ""}
       {...rest}
       select
       variant="outlined"
     >
       {children}
-    </Field>
+    </TextField>
   );
 };

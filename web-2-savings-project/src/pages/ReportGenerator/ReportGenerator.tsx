@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import {
   TableReport,
   PickerDataType,
-  TransferListBusinessUnits,
-  PickerKeyboardDate
+  TransferListBusinessUnits
 } from "../../components";
 import { Formik } from "formik";
 import { Button, Typography } from "@material-ui/core";
@@ -12,78 +11,56 @@ import {
   ReportDataTableInput
 } from "../../gql/__generated__/graphql-global-types";
 import { TransferListProjects } from "../../components";
-import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date";
 import { useStyles } from "./reportGeneratorStyles";
+import { PickerMonth } from "../../components/PickerMonth";
 
 const initValues: ReportGeneratorValues = {
-  dataType: "",
-  businessUnitIds: [""],
-  projectIds: [""]
+  dataType: ReportDataType.ForecastedSavingsAmount,
+  businessUnitIds: [],
+  projectIds: [],
+  startPeriod: new Date(),
+  endPeriod: new Date()
 };
 
 interface ReportGeneratorValues {
-  dataType: ReportDataType | "";
+  dataType: ReportDataType;
   businessUnitIds: string[];
   projectIds: string[];
+  startPeriod: Date;
+  endPeriod: Date;
 }
 
 const initState: ReportDataTableInput = {
   dataType: ReportDataType.ActualSavings,
   businessUnitIds: [],
   projectIds: [],
-  startPeriod: `${new Date().getTime()}`,
-  endPeriod: `${new Date().getTime()}`
+  startPeriod: new Date().toISOString(),
+  endPeriod: new Date().toISOString()
 };
 
 export const ReportGenerator: React.SFC<{}> = props => {
   const [reportGeneratorValues, setReportGeneratorValaues] = useState<
     ReportDataTableInput
   >(initState);
-  const [projectIds, setProjectIds] = useState<string[]>([]);
-  const [businessUnitIds, setBusinessUnitIds] = useState<string[]>([]);
-  const [startDate, setStartDate] = useState<Date>(new Date());
-  const [endDate, setEndDate] = useState<Date>(new Date());
 
   const classes = useStyles();
 
-  const handleProjectChange = (left: string[], right: string[]) => {
-    setProjectIds(right);
-  };
-
-  const handleBusinessUnitChange = (left: string[], right: string[]) => {
-    setBusinessUnitIds(right);
-  };
-
-  const handleStartDateChange = (date: MaterialUiPickersDate) => {
-    const typedDate = date as Date;
-    setStartDate(typedDate);
-  };
-
-  const handleEndDateChange = (date: MaterialUiPickersDate) => {
-    const typedDate = date as Date;
-    setEndDate(typedDate);
-  };
-
   return (
-    <>
+    <div className={classes.root}>
       <Formik<ReportGeneratorValues>
         initialValues={initValues}
         onSubmit={values => {
-          if (values.dataType === "") {
-            throw new Error("Invalid Data Type");
-          } else {
-            setReportGeneratorValaues({
-              dataType: values.dataType,
-              projectIds,
-              businessUnitIds,
-              startPeriod: `${startDate.getTime()}`,
-              endPeriod: `${endDate.getTime()}`
-            });
-          }
+          setReportGeneratorValaues({
+            dataType: values.dataType,
+            projectIds: values.projectIds,
+            businessUnitIds: values.businessUnitIds,
+            startPeriod: values.startPeriod.toISOString(),
+            endPeriod: values.endPeriod.toISOString()
+          });
         }}
         render={({ submitForm }) => {
           return (
-            <div className={classes.root}>
+            <div className={classes.form}>
               <div className={classes.titleContent}>
                 <Typography>Data Type</Typography>
                 <PickerDataType name="dataType" />
@@ -91,27 +68,25 @@ export const ReportGenerator: React.SFC<{}> = props => {
               <div className={classes.titleContent}>
                 <Typography>Time Period</Typography>
                 <div className={classes.datePickers}>
-                  <PickerKeyboardDate
-                    value={startDate}
-                    onChange={handleStartDateChange}
-                    label="Start (inclusive)"
+                  <PickerMonth
+                    name="startPeriod"
+                    label="Start"
+                    dataCy="picker-month-start"
                   />
-                  <PickerKeyboardDate
-                    value={endDate}
-                    onChange={handleEndDateChange}
-                    label="End (inclusive)"
+                  <PickerMonth
+                    name="endPeriod"
+                    label="Start"
+                    dataCy="picker-month-start"
                   />
                 </div>
               </div>
               <div className={classes.titleContent}>
                 <Typography>Business Units</Typography>
-                <TransferListBusinessUnits
-                  onChange={handleBusinessUnitChange}
-                />
+                <TransferListBusinessUnits name="businessUnitIds" />
               </div>
               <div className={classes.titleContent}>
                 <Typography>Projects</Typography>
-                <TransferListProjects onChange={handleProjectChange} />
+                <TransferListProjects name="projectIds" />
               </div>
               <Button
                 type="submit"
@@ -131,6 +106,6 @@ export const ReportGenerator: React.SFC<{}> = props => {
       ) : (
         <TableReport input={reportGeneratorValues} />
       )}
-    </>
+    </div>
   );
 };

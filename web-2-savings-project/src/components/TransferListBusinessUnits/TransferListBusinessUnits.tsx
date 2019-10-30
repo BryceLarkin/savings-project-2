@@ -7,8 +7,8 @@ import { Loading } from "../Loading";
 import { Typography } from "@material-ui/core";
 
 export const TransferListBusinessUnits: React.FC<{
-  onChange: (left: string[], right: string[]) => void;
-}> = ({ onChange }) => {
+  name: string;
+}> = ({ name }) => {
   const [initBusinessUnits, setInitBusinessUnits] = useState<string[]>([]);
   const [idToNameMap, setIdToNameMap] = useState();
 
@@ -38,9 +38,8 @@ export const TransferListBusinessUnits: React.FC<{
   return (
     <TransferList
       initLeftIds={initBusinessUnits}
-      initRightIds={[]}
       idToNameMap={idToNameMap}
-      onChange={onChange}
+      name={name}
     />
   );
 };

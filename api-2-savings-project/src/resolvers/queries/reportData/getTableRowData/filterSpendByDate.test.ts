@@ -31,10 +31,9 @@ describe("filterSpendByDate", () => {
     const spend = [spend1, spend2, spend3];
     const filteredSpend = filterSpendByDate(
       spend,
-      1793214520000,
-      1993214525000
+      new Date(1793214520000).toISOString(),
+      new Date(1993214525000).toISOString()
     );
-    console.log(filteredSpend);
     assert.lengthOf(filteredSpend, 1);
     assert.strictEqual(filteredSpend[0].id, spend2.id);
   });
@@ -43,8 +42,8 @@ describe("filterSpendByDate", () => {
     const spend = [spend1, spend2, spend3];
     const filteredSpend = filterSpendByDate(
       spend,
-      1262062525000,
-      2524366525000
+      new Date(1262062525000).toISOString(),
+      new Date(2524366525000).toISOString()
     );
 
     assert.lengthOf(filteredSpend, 3);
@@ -54,8 +53,8 @@ describe("filterSpendByDate", () => {
     const spend = [spend1, spend2, spend3];
     const filteredSpend = filterSpendByDate(
       spend,
-      1262062525000,
-      2524366525000
+      new Date(1262062525000).toISOString(),
+      new Date(2524366525000).toISOString()
     );
 
     assert.strictEqual(filteredSpend[0].id, spend1.id);
