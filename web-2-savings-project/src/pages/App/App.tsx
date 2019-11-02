@@ -6,7 +6,7 @@ import { createHttpLink } from "apollo-link-http";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { setContext } from "apollo-link-context";
 import { InMemoryCache } from "apollo-cache-inmemory";
-import firebase from "../../services/firebase";
+import { firebase } from "../../services";
 import { ThemeProvider } from "@material-ui/styles";
 import theme from "../../components/Theme";
 import CssBaseline from "@material-ui/core/CssBaseline";

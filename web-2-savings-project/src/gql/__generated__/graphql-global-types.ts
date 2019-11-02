@@ -104,6 +104,10 @@ export interface ProjectProfileFilter {
   none?: ProjectProfileWhereInput | null;
 }
 
+export interface ProjectProfileUpdateInput {
+  spend?: SpendUpdateManyWithoutProjectProfileInput | null;
+}
+
 export interface ProjectProfileWhereInput {
   id?: StringFilter | null;
   spend?: SpendFilter | null;
@@ -112,6 +116,10 @@ export interface ProjectProfileWhereInput {
   NOT?: ProjectProfileWhereInput[] | null;
   businessUnit?: BusinessUnitWhereInput | null;
   project?: ProjectWhereInput | null;
+}
+
+export interface ProjectProfileWhereUniqueInput {
+  id: string;
 }
 
 export interface ProjectWhereInput {
@@ -157,17 +165,35 @@ export interface SpendFilter {
   none?: SpendWhereInput | null;
 }
 
+export interface SpendUpdateManyWithoutProjectProfileInput {
+  update: SpendUpdateWithWhereUniqueWithoutProjectProfileInput[];
+}
+
+export interface SpendUpdateWithWhereUniqueWithoutProjectProfileInput {
+  where: SpendWhereUniqueInput;
+  data: SpendUpdateWithoutProjectProfileDataInput;
+}
+
+export interface SpendUpdateWithoutProjectProfileDataInput {
+  baselineSpend?: number | null;
+  forecastedSavingsAmount?: number | null;
+  actualSavings?: number | null;
+}
+
 export interface SpendWhereInput {
   id?: StringFilter | null;
   month?: DateTimeFilter | null;
   baselineSpend?: IntFilter | null;
   forecastedSavingsAmount?: IntFilter | null;
-  forecastedSavingsPercentage?: IntFilter | null;
   actualSavings?: NullableIntFilter | null;
   AND?: SpendWhereInput[] | null;
   OR?: SpendWhereInput[] | null;
   NOT?: SpendWhereInput[] | null;
   projectProfile?: ProjectProfileWhereInput | null;
+}
+
+export interface SpendWhereUniqueInput {
+  id: string;
 }
 
 export interface StringFilter {

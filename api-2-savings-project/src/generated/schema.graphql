@@ -91,6 +91,7 @@ type Mutation {
   createProject(input: CreateProjectInput!): Project!
   createProjectProfiles(input: CreateProjectProfilesInput!): [ProjectProfile!]!
   createSpends(input: [CreateSpendsInput!]!): [ProjectProfile!]!
+  updateOneProjectProfile(data: ProjectProfileUpdateInput!, where: ProjectProfileWhereUniqueInput!): ProjectProfile!
 }
 
 input NullableIntFilter {
@@ -145,6 +146,10 @@ input ProjectProfileSpendOrderByInput {
   month: OrderByArg
 }
 
+input ProjectProfileUpdateInput {
+  spend: SpendUpdateManyWithoutProjectProfileInput
+}
+
 input ProjectProfileWhereInput {
   AND: [ProjectProfileWhereInput!]
   businessUnit: BusinessUnitWhereInput
@@ -153,6 +158,10 @@ input ProjectProfileWhereInput {
   OR: [ProjectProfileWhereInput!]
   project: ProjectWhereInput
   spend: SpendFilter
+}
+
+input ProjectProfileWhereUniqueInput {
+  id: String!
 }
 
 input ProjectProjectProfilesWhereInput {
@@ -180,6 +189,7 @@ input ProjectWhereUniqueInput {
 type Query {
   businessUnits(after: ID, before: ID, first: Int, last: Int, orderBy: QueryBusinessUnitsOrderByInput, skip: Int): [BusinessUnit!]!
   project(where: ProjectWhereUniqueInput!): Project
+  projectProfile(where: ProjectProfileWhereUniqueInput!): ProjectProfile
   projectProfiles(after: ID, before: ID, first: Int, last: Int, skip: Int, where: QueryProjectProfilesWhereInput): [ProjectProfile!]!
   projects(after: ID, before: ID, first: Int, last: Int, orderBy: QueryProjectsOrderByInput, skip: Int, where: QueryProjectsWhereInput): [Project!]!
   reportTableData(input: ReportDataTableInput!): [ReportTableData!]!
@@ -261,6 +271,21 @@ input SpendFilter {
   some: SpendWhereInput
 }
 
+input SpendUpdateManyWithoutProjectProfileInput {
+  update: [SpendUpdateWithWhereUniqueWithoutProjectProfileInput!]!
+}
+
+input SpendUpdateWithoutProjectProfileDataInput {
+  actualSavings: Int
+  baselineSpend: Int
+  forecastedSavingsAmount: Int
+}
+
+input SpendUpdateWithWhereUniqueWithoutProjectProfileInput {
+  data: SpendUpdateWithoutProjectProfileDataInput!
+  where: SpendWhereUniqueInput!
+}
+
 input SpendWhereInput {
   actualSavings: NullableIntFilter
   AND: [SpendWhereInput!]
@@ -271,6 +296,10 @@ input SpendWhereInput {
   NOT: [SpendWhereInput!]
   OR: [SpendWhereInput!]
   projectProfile: ProjectProfileWhereInput
+}
+
+input SpendWhereUniqueInput {
+  id: String!
 }
 
 input StringFilter {

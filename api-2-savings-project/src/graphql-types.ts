@@ -136,6 +136,7 @@ export type Mutation = {
   createProject: Project,
   createProjectProfiles: Array<ProjectProfile>,
   createSpends: Array<ProjectProfile>,
+  updateOneProjectProfile2: ProjectProfile,
 };
 
 
@@ -151,6 +152,12 @@ export type MutationCreateProjectProfilesArgs = {
 
 export type MutationCreateSpendsArgs = {
   input: Array<CreateSpendsInput>
+};
+
+
+export type MutationUpdateOneProjectProfile2Args = {
+  data: ProjectProfileUpdateInput,
+  where: ProjectProfileWhereUniqueInput
 };
 
 export type NullableIntFilter = {
@@ -227,6 +234,10 @@ export type ProjectProfileSpendOrderByInput = {
   month?: Maybe<OrderByArg>,
 };
 
+export type ProjectProfileUpdateInput = {
+  spend?: Maybe<SpendUpdateManyWithoutProjectProfileInput>,
+};
+
 export type ProjectProfileWhereInput = {
   id?: Maybe<StringFilter>,
   spend?: Maybe<SpendFilter>,
@@ -235,6 +246,10 @@ export type ProjectProfileWhereInput = {
   NOT?: Maybe<Array<ProjectProfileWhereInput>>,
   businessUnit?: Maybe<BusinessUnitWhereInput>,
   project?: Maybe<ProjectWhereInput>,
+};
+
+export type ProjectProfileWhereUniqueInput = {
+  id: Scalars['String'],
 };
 
 export type ProjectProjectProfilesWhereInput = {
@@ -399,6 +414,21 @@ export type SpendFilter = {
   none?: Maybe<SpendWhereInput>,
 };
 
+export type SpendUpdateManyWithoutProjectProfileInput = {
+  update: Array<SpendUpdateWithWhereUniqueWithoutProjectProfileInput>,
+};
+
+export type SpendUpdateWithoutProjectProfileDataInput = {
+  baselineSpend?: Maybe<Scalars['Int']>,
+  forecastedSavingsAmount?: Maybe<Scalars['Int']>,
+  actualSavings?: Maybe<Scalars['Int']>,
+};
+
+export type SpendUpdateWithWhereUniqueWithoutProjectProfileInput = {
+  where: SpendWhereUniqueInput,
+  data: SpendUpdateWithoutProjectProfileDataInput,
+};
+
 export type SpendWhereInput = {
   id?: Maybe<StringFilter>,
   month?: Maybe<DateTimeFilter>,
@@ -409,6 +439,10 @@ export type SpendWhereInput = {
   OR?: Maybe<Array<SpendWhereInput>>,
   NOT?: Maybe<Array<SpendWhereInput>>,
   projectProfile?: Maybe<ProjectProfileWhereInput>,
+};
+
+export type SpendWhereUniqueInput = {
+  id: Scalars['String'],
 };
 
 export type StringFilter = {

@@ -22,3 +22,4 @@ export { Typography } from "./Typography";
 export { FormCreateProject } from "./FormCreateProject";
 export { Paper } from "./Paper";
 // export type TableReportInputs = TableReportInputs;
+export { TableUpdateProject } from "./TableUpdateProject";

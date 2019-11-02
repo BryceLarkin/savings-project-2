@@ -5,6 +5,7 @@ export const baseQueries = objectType({
   definition(t) {
     t.crud.projects({ filtering: { url: true }, ordering: { name: true } });
     t.crud.projectProfiles({ filtering: { project: true } });
+    t.crud.projectProfile();
     t.crud.businessUnits({ ordering: { name: true } });
     t.crud.project();
     t.crud.user();

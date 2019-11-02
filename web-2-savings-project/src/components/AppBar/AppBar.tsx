@@ -8,7 +8,8 @@ import {
   LinkProjects,
   LinkMyAccount,
   LinkReports,
-  LinkNewProject
+  LinkNewProject,
+  LinkUpdate
 } from "../Links";
 import { LinkIcon } from "../LinkIcon";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
@@ -48,11 +49,6 @@ export const AppBar: React.FC<{}> = () => {
         </div>
         <div>
           <BtnLink
-            component={LinkReports}
-            label="Reports"
-            textColor={textColor}
-          />
-          <BtnLink
             component={LinkProjects}
             label="Projects"
             textColor={textColor}
@@ -60,6 +56,16 @@ export const AppBar: React.FC<{}> = () => {
           <BtnLink
             component={LinkNewProject}
             label="Create"
+            textColor={textColor}
+          />
+          <BtnLink
+            component={LinkUpdate}
+            label="Update"
+            textColor={textColor}
+          />
+          <BtnLink
+            component={LinkReports}
+            label="Reports"
             textColor={textColor}
           />
           <LinkIcon

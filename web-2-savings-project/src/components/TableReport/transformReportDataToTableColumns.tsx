@@ -34,7 +34,11 @@ export const transformReportDataToTableColumns = (
   const columns: Column<any>[] = reportData[0].data.reduce(
     (acc, { columnName }) => [
       ...acc,
-      { title: columnName, field: columnName, type: "currency" }
+      {
+        title: columnName,
+        field: columnName,
+        type: "currency"
+      }
     ],
     initColumns
   );

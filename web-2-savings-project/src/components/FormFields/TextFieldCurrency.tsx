@@ -33,7 +33,15 @@ export const TextFieldCurrency: React.FC<{
   name: string;
   label: string;
   dataCy?: string;
-}> = ({ name, label, dataCy = "text-field-currency" }) => {
+  disabled?: boolean;
+  helperText?: string;
+}> = ({
+  name,
+  label,
+  dataCy = "text-field-currency",
+  disabled = false,
+  helperText = ""
+}) => {
   const [field, meta] = useField(name);
   const { setFieldValue } = useFormikContext<any>();
 
@@ -50,7 +58,7 @@ export const TextFieldCurrency: React.FC<{
       value={field.value}
       onChange={handleChange}
       error={!!meta.error}
-      helperText={!!meta.error ? meta.error : ""}
+      helperText={!!meta.error ? meta.error : helperText}
       InputProps={{
         inputComponent: NumberFormatCustom as any
       }}
@@ -58,6 +66,7 @@ export const TextFieldCurrency: React.FC<{
         style: { textAlign: "right" }
       }}
       data-cy={dataCy}
+      disabled={disabled}
     />
   );
 };

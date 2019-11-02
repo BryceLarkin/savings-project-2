@@ -15,10 +15,17 @@ export const apple: CompanyCreateInput = {
   name: "Apple"
 };
 
-export const user: UserCreateInput = {
+export const user1: UserCreateInput = {
   id: id.userId1,
   firstName: "John",
   lastName: "Smith",
+  company
+};
+
+export const user2: UserCreateInput = {
+  id: id.userId2,
+  firstName: "Jane",
+  lastName: "Clark",
   company
 };
 
@@ -31,6 +38,12 @@ export const businessUnit1: BusinessUnitCreateInput = {
 export const businessUnit2: BusinessUnitCreateInput = {
   id: id.businessUnitId2,
   name: "Software",
+  company
+};
+
+export const businessUnit3: BusinessUnitCreateInput = {
+  id: id.businessUnitId3,
+  name: "Logistics",
   company
 };
 

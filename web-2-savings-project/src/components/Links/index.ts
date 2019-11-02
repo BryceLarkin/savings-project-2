@@ -5,3 +5,4 @@ export { LinkProjects } from "./LinkProjects";
 export { LinkMyAccount } from "./LinkMyAccount";
 export { LinkReports } from "./LinkReports";
 export { LinkNewProject } from "./LinkNewProject";
+export { LinkUpdate } from "./LinkUpdate";

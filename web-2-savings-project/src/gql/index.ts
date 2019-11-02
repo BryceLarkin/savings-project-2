@@ -9,3 +9,9 @@ export { READ_REPORT_TABLE_DATA } from "./readReportTableData";
 export { READ_USER_PROJECTS } from "./readUserProjects";
 export { READ_USERS_NAME } from "./readUsersName";
 export { READ_PROJECT_PROFILE_NAMES } from "./readProjectProfileNames";
+export {
+  READ_PROJECT_PROFILE_SPEND_AND_OWNER
+} from "./readProjectProfileSpendAndOwner";
+export {
+  UPDATE_ONE_PROJECT_PROFILE_SPEND
+} from "./updateOneProjectProfileSpend";

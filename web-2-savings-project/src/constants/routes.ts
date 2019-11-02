@@ -21,3 +21,17 @@ export const USER_FN = (userId: string) => `/users/${userId}`;
 export const REPORT = "/reports";
 
 export const MY_ACCOUNT = "/my-account";
+
+// export const UPDATE = "/update";
+export const UPDATE_PROJECT =
+  "/update/projects/:projectUrl/profiles/:projectProfileId";
+export interface UPDATE_PROJECT_PARAMS {
+  projectUrl: string;
+  projectProfileId: string;
+}
+export const UPDATE_PROJECT_FN = (
+  projectUrl: string,
+  projectProfileId: string
+) => `/update/projects/${projectUrl}/profiles/${projectProfileId}`;
+
+export const UPDATE = "/update";

@@ -8,7 +8,11 @@ import { makeStyles, createStyles } from "@material-ui/core";
 import { ITheme } from "../../components/Theme";
 // import { Test } from "../Test";
 import { UserProfile } from "../UserProfile";
-import { AppBar, FormCreateProject } from "../../components";
+import {
+  AppBar,
+  FormCreateProject,
+  TableUpdateProject
+} from "../../components";
 
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
@@ -48,6 +52,7 @@ export const Pages: React.FC<{}> = () => {
           <Route exact path={R.PROJECT} component={ReadProject} />
           <Route exact path={R.REPORT} component={ReportGenerator} />
           <Route exact path={R.USER} component={UserProfile} />
+          <Route exact path={R.UPDATE_PROJECT} component={TableUpdateProject} />
         </Switch>
       </main>
     </>

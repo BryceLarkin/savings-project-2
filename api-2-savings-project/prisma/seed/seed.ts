@@ -10,10 +10,12 @@ const p = new Photon({ debug: false });
 const main = async (): Promise<void> => {
   await p.companies.create({ data: d.apple });
 
-  await p.users.create({ data: d.user });
+  await p.users.create({ data: d.user1 });
+  await p.users.create({ data: d.user2 });
 
   await p.businessUnits.create({ data: d.businessUnit1 });
   await p.businessUnits.create({ data: d.businessUnit2 });
+  await p.businessUnits.create({ data: d.businessUnit3 });
 
   await p.projects.create({ data: d.project1 });
 

@@ -1,9 +1,11 @@
 export const companyId = "l85hn6uaw20qydt";
 
 export const userId1 = "a4sd9nfv9gctauo";
+export const userId2 = "mionaasyyvfm2r1";
 
 export const businessUnitId1 = "btar1v2l3j2q93x";
 export const businessUnitId2 = "nyeli5wqampeazg";
+export const businessUnitId3 = "h3qwsy2kbejl3ma";
 
 export const projectId1 = "dlcchpdauu1mgux";
 

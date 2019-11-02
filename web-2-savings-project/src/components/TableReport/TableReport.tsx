@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import MaterialTable from "material-table";
 import { useQuery } from "@apollo/react-hooks";
-import { format } from "date-fns";
 import { READ_REPORT_TABLE_DATA } from "../../gql";
 import {
   ReadReportTableData,
@@ -12,6 +11,7 @@ import { Loading } from "../Loading";
 import { transformReportDataToTableColumns } from "./transformReportDataToTableColumns";
 import { transformReportDataToTableData } from "./transformReportDataToTableData";
 import { reportDataTypeMap } from "../../constants";
+import { formatDate } from "../../helpers";
 
 export interface RowData {
   [key: string]: string | number;
@@ -63,5 +63,3 @@ export const TableReport: React.FC<{ input: ReportDataTableInput }> = ({
     />
   );
 };
-
-const formatDate = (date: string) => format(new Date(date), "MM/yyyy");
