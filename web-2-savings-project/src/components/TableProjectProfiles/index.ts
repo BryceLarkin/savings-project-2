@@ -1,0 +1,1 @@
+export { TableProjectProfiles } from "./TableProjectProfiles";

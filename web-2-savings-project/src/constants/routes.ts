@@ -21,6 +21,7 @@ export const USER_FN = (userId: string) => `/users/${userId}`;
 export const REPORT = "/reports";
 
 export const MY_ACCOUNT = "/my-account";
+export const LOGIN = "/login";
 
 // export const UPDATE = "/update";
 export const UPDATE_PROJECT =

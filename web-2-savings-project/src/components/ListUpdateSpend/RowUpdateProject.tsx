@@ -8,7 +8,6 @@ import {
 import { useFormikContext } from "formik";
 import { ITheme } from "../Theme";
 import { Typography } from "../Typography";
-import { formatDate } from "../../helpers";
 import { format } from "date-fns";
 const formatCurrency = (num: number) =>
   new Intl.NumberFormat("en-US", {

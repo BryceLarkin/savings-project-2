@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme: ITheme) =>
     }
   })
 );
-export const TableUpdateProject: React.FC<{}> = props => {
+export const ListUpdateSpend: React.FC<{}> = props => {
   const { projectUrl, projectProfileId } = useParams<R.UPDATE_PROJECT_PARAMS>();
   const history = useHistory();
   const [user, userLoading, userError] = useAuthState(firebase.auth());

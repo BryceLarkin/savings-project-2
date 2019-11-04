@@ -15,3 +15,7 @@ export {
 export {
   UPDATE_ONE_PROJECT_PROFILE_SPEND
 } from "./updateOneProjectProfileSpend";
+export { READ_PROJECT_PROFILE_NAME } from "./readProjectProfileName";
+export {
+  READ_PROJECT_PROFILE_AND_PROJECT_NAMES
+} from "./readProjectProfileAndProjectNames";

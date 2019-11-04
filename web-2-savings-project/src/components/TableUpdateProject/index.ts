@@ -1,1 +1,0 @@
-export { TableUpdateProject } from "./TableUpdateProject";

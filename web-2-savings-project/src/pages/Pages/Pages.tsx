@@ -6,13 +6,12 @@ import { ReadProject } from "../ReadProject";
 import { ReportGenerator } from "../ReportGenerator";
 import { makeStyles, createStyles } from "@material-ui/core";
 import { ITheme } from "../../components/Theme";
-// import { Test } from "../Test";
 import { UserProfile } from "../UserProfile";
-import {
-  AppBar,
-  FormCreateProject,
-  TableUpdateProject
-} from "../../components";
+import { AppBar, FormCreateProject } from "../../components";
+import { UpdateSingleProjectProfile } from "../UpdateSingleProjectProfile";
+import { UpdateListProjectProfiles } from "../UpdateListProjectProfiles.tsx";
+import { Login } from "../Login";
+import { Home } from "../Home";
 
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
@@ -44,6 +43,7 @@ export const Pages: React.FC<{}> = () => {
       <main className={classes.main}>
         <div className={classes.toolbar} />
         <Switch>
+          <Route exact path={R.HOME} component={Home} />
           <Route
             path={R.NEW}
             render={props => <FormCreateProject {...props} rootPath={R.NEW} />}
@@ -52,7 +52,13 @@ export const Pages: React.FC<{}> = () => {
           <Route exact path={R.PROJECT} component={ReadProject} />
           <Route exact path={R.REPORT} component={ReportGenerator} />
           <Route exact path={R.USER} component={UserProfile} />
-          <Route exact path={R.UPDATE_PROJECT} component={TableUpdateProject} />
+          <Route exact path={R.UPDATE} component={UpdateListProjectProfiles} />
+          <Route
+            exact
+            path={R.UPDATE_PROJECT}
+            component={UpdateSingleProjectProfile}
+          />
+          <Route exact path={R.LOGIN} component={Login} />
         </Switch>
       </main>
     </>
