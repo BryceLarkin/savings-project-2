@@ -27,6 +27,10 @@ export const READ_PROJECT = gql`
           baselineSpend
           actualSavings
         }
+        project {
+          id
+          url
+        }
       }
     }
   }

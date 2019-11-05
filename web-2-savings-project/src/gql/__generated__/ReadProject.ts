@@ -30,11 +30,18 @@ export interface ReadProject_project_projectProfiles_spend {
   actualSavings: number | null;
 }
 
+export interface ReadProject_project_projectProfiles_project {
+  __typename: "Project";
+  id: string;
+  url: string;
+}
+
 export interface ReadProject_project_projectProfiles {
   __typename: "ProjectProfile";
   id: string;
   businessUnit: ReadProject_project_projectProfiles_businessUnit;
   spend: ReadProject_project_projectProfiles_spend[];
+  project: ReadProject_project_projectProfiles_project;
 }
 
 export interface ReadProject_project {

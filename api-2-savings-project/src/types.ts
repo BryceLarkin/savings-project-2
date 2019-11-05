@@ -7,7 +7,7 @@ export interface UserToken extends admin.auth.DecodedIdToken {
   companyId: string;
 }
 
-// export type User = admin.auth.DecodedIdToken;
+export type User = admin.auth.DecodedIdToken;
 
 export interface Context extends ContextParameters {
   photon: Photon;

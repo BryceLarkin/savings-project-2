@@ -83,8 +83,6 @@ export const ListUpdateSpend: React.FC<{}> = props => {
       })
     )
   };
-  console.log(user);
-  // const isOwner = data.projectProfile.project.owner.id === user.uid;
 
   return (
     <Paper>

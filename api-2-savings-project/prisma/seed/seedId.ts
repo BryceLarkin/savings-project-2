@@ -1,6 +1,6 @@
 export const companyId = "l85hn6uaw20qydt";
 
-export const userId1 = "a4sd9nfv9gctauo";
+export const userId1 = "fj82f5gsq7po8ga";
 export const userId2 = "mionaasyyvfm2r1";
 
 export const businessUnitId1 = "btar1v2l3j2q93x";
