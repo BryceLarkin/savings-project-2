@@ -12,6 +12,7 @@ import { UpdateSingleProjectProfile } from "../UpdateSingleProjectProfile";
 import { UpdateListProjectProfiles } from "../UpdateListProjectProfiles.tsx";
 import { Login } from "../Login";
 import { Home } from "../Home";
+import { MyAccount } from "../MyAccount";
 
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
@@ -59,6 +60,7 @@ export const Pages: React.FC<{}> = () => {
             component={UpdateSingleProjectProfile}
           />
           <Route exact path={R.LOGIN} component={Login} />
+          <Route exact path={R.MY_ACCOUNT} component={MyAccount} />
         </Switch>
       </main>
     </>

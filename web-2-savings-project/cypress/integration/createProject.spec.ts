@@ -2,7 +2,6 @@
 /// <reference path="../support/index.d.ts" />
 
 import { R } from "../helpers";
-import { assert } from "chai";
 
 describe("Creates complete Project", () => {
   it("fills out forms and submits", () => {
@@ -105,5 +104,13 @@ describe("Creates complete Project", () => {
       .should("have.text", "$6");
 
     cy.dataCy("submit-btn").click();
+
+    // Update actual spend
+  });
+
+  it.only("visits auth route", () => {
+    cy.authVisit(
+      "update/projects/vm49752lB/profiles/ck2l63exp0138ewk5o1cjjf0r"
+    );
   });
 });

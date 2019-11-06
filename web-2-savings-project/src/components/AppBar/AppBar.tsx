@@ -9,10 +9,13 @@ import {
   LinkMyAccount,
   LinkReports,
   LinkNewProject,
-  LinkUpdate
+  LinkUpdate,
+  LinkLogin
 } from "../Links";
 import { LinkIcon } from "../LinkIcon";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { firebase } from "../../services";
 
 const useStyles = makeStyles((theme: ITheme) =>
   createStyles({
@@ -32,6 +35,8 @@ const useStyles = makeStyles((theme: ITheme) =>
 
 export const AppBar: React.FC<{}> = () => {
   const classes = useStyles();
+  const [user] = useAuthState(firebase.auth());
+
   const textColor = "light";
   return (
     <MuiAppBar position="fixed" color="primary" className={classes.appBar}>
@@ -68,6 +73,15 @@ export const AppBar: React.FC<{}> = () => {
             label="Reports"
             textColor={textColor}
           />
+          {user ? (
+            <></>
+          ) : (
+            <BtnLink
+              component={LinkLogin}
+              label="Login"
+              textColor={textColor}
+            />
+          )}
           <LinkIcon
             ariaLabel="My-Account"
             linkComponent={LinkMyAccount}

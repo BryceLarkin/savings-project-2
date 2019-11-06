@@ -71,6 +71,8 @@ export const ListUpdateSpend: React.FC<{}> = props => {
   if (typeof user === "undefined" || user === null)
     return <Typography>No user found</Typography>;
 
+  const isOwner = user.uid === data.projectProfile.project.owner.id;
+
   const initialValues: SpendUpdateManyWithoutProjectProfileInput = {
     update: data.projectProfile.spend.map(
       ({ id, baselineSpend, forecastedSavingsAmount, actualSavings }) => ({
@@ -111,7 +113,7 @@ export const ListUpdateSpend: React.FC<{}> = props => {
                 {projectProfile.spend.map((s, index) => (
                   <RowUpdateProject
                     index={index}
-                    isOwner={false}
+                    isOwner={isOwner}
                     key={s.id}
                     initSpend={initialValues.update[index].data}
                     month={s.month}

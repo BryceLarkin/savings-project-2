@@ -28,3 +28,4 @@ export {
 } from "./UpdateSingleProjectProfileTitle";
 export { TableProjectProfiles } from "./TableProjectProfiles";
 export { FormLogin } from "./FormLogin";
+export { BtnLogout } from "./BtnLogout";

@@ -12,9 +12,9 @@ export const createSpendsMutation = mutationField("createSpends", {
     })
   },
   resolve: async (parent, { input }, { photon }) => {
-    const spendPromises = input
-      .map(s => createSpendsForProjectProfile(photon, s))
-      .flat();
+    const spendPromises = input.flatMap(s =>
+      createSpendsForProjectProfile(photon, s)
+    );
 
     await Promise.all(spendPromises);
 

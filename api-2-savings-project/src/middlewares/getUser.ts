@@ -12,7 +12,7 @@ const getUser = async (
     const authHeader = ctx.request.headers.authorization;
 
     let user: User | undefined = undefined;
-    console.log(authHeader);
+
     if (authHeader) {
       const token = authHeader.split(" ")[1];
 

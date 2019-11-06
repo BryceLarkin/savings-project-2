@@ -18,12 +18,7 @@ export const PickerBusinessUnits: React.FC<{ name: string }> = ({ name }) => {
   });
 
   return (
-    <Select
-      name={name}
-      label="Business Unit"
-      dataCy="picker-business-units"
-      multiple
-    >
+    <Select name={name} label="Business Unit" dataCy="picker-business-units">
       {businessUnits.map(bu => (
         <MenuItem
           key={bu.id}
